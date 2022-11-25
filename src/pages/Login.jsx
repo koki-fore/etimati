@@ -19,6 +19,7 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import auth from "../firebaseEnv";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../contexts/AuthContext";
 
 
 const Login = () => {
@@ -26,14 +27,15 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const { user } = useAuthContext();
   const navigate = useNavigate()
   
   // ログイン状態かどうかを判定するイベントを発動する
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      // ログインしている場合、ホームへリダイレクト
-      user && navigate('/')
-    });
+    // ログインしている場合、ホームへリダイレクト
+    if (!user) {
+      navigate('/')
+    }
   }, []);
 
   const handleSubmit = (event) => {
