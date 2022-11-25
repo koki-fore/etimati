@@ -4,6 +4,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
+import { AuthProvider } from './contexts/AuthContext'
 // import PrivateRoutes from './utils/PrivateRoutes'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
@@ -12,16 +13,17 @@ import Login from './pages/Login'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ChakraProvider>
-      <BrowserRouter>
-        <Routes>
-        {/* <Route element={<PrivateRoutes />}> */}
-        <Route path="/" element={<App />} />
-        {/* </Route> */}
-        <Route path='/SignUp' element={<SignUp />} />
-        <Route path='/Login' element={<Login />} />
-        </Routes>
-      </BrowserRouter>
-      
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+          {/* <PrivateRoutes > */}
+          <Route path="/" element={<App />} />
+          {/* </PrivateRoutes> */}
+          <Route path='/SignUp' element={<SignUp />} />
+          <Route path='/Login' element={<Login />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </ChakraProvider>
   </React.StrictMode>
 )
