@@ -96,7 +96,7 @@ const SignUp = () => {
               </Stack>
               <Stack pt={6}>
                 <Text align={'center'}>
-                  ログインは<Link color={'blue.400'}>こちら</Link>
+                  ログインは<Link to={'/login'} color={'blue.400'}>こちら</Link>
                 </Text>
               </Stack>
             </Stack>

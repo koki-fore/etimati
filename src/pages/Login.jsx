@@ -111,7 +111,7 @@ const Login = () => {
             
               <Stack pt={6}>
                 <Text align={'center'}>
-                  ユーザー登録がまだの方は<Link color={'blue.400'}>こちら</Link>
+                  ユーザー登録がまだの方は<Link to={'/signUp'} color={'blue.400'}>こちら</Link>
                 </Text>
               </Stack>
             </Stack>
