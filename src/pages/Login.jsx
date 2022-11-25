@@ -16,7 +16,8 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react'
+import { signInWithEmailAndPassword } from "firebase/auth";
 import auth from "../firebaseEnv";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
@@ -24,11 +25,13 @@ import { useAuthContext } from "../contexts/AuthContext";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [showAlert, setShowAlert] = useState(false);
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const { user } = useAuthContext();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   
   // ログイン状態かどうかを判定するイベントを発動する
   useEffect(() => {
@@ -52,6 +55,7 @@ const Login = () => {
       const errorMessage = error.message;
       console.log(errorCode)
       console.log(errorMessage)
+      setShowAlert(true)
     });
   }
 
@@ -96,6 +100,13 @@ const Login = () => {
                   </InputRightElement>
                 </InputGroup>
               </FormControl>
+              {showAlert && (
+                <Alert status='error'>
+                  <AlertIcon />
+                  <AlertTitle>Error!</AlertTitle>
+                  <AlertDescription>メールアドレスかパスワードが違います。</AlertDescription>
+                </Alert>
+              )}
               <Stack spacing={10} pt={2}>
                 <Button
                   type="submit"
