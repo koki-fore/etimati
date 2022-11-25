@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import {
   Flex,
   Box,
@@ -13,12 +14,12 @@ import {
   Heading,
   Text,
   useColorModeValue,
-  Link,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import auth from "../firebaseEnv";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../contexts/AuthContext";
 
 
 const Login = () => {
@@ -26,14 +27,15 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const { user } = useAuthContext();
   const navigate = useNavigate()
   
   // ログイン状態かどうかを判定するイベントを発動する
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      // ログインしている場合、ホームへリダイレクト
-      user && navigate('/')
-    });
+    // ログインしている場合、ホームへリダイレクト
+    if (user) {
+      navigate('/')
+    }
   }, []);
 
   const handleSubmit = (event) => {
@@ -41,8 +43,9 @@ const Login = () => {
     
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
+      // Signed in 
+      const user = userCredential.user;
+      navigate('/')
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -109,7 +112,7 @@ const Login = () => {
             
               <Stack pt={6}>
                 <Text align={'center'}>
-                  ユーザー登録がまだの方は<Link color={'blue.400'}>こちら</Link>
+                  ユーザー登録がまだの方は<Link to={'/signUp'} color={'blue.400'}>こちら</Link>
                 </Text>
               </Stack>
             </Stack>

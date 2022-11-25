@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 import {
   Flex,
   Box,
@@ -12,7 +13,6 @@ import {
   Button,
   Text,
   useColorModeValue,
-  Link,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -96,7 +96,7 @@ const SignUp = () => {
               </Stack>
               <Stack pt={6}>
                 <Text align={'center'}>
-                  ログインは<Link color={'blue.400'}>こちら</Link>
+                  ログインは<Link to={'/login'} color={'blue.400'}>こちら</Link>
                 </Text>
               </Stack>
             </Stack>

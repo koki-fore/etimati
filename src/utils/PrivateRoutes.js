@@ -1,13 +1,11 @@
-import { Navigate, Outlet } from 'react-router-dom';
-import { onAuthStateChanged } from "firebase/auth";
-import auth from "../firebaseEnv";
+import { Outlet, Navigate } from 'react-router-dom';
+import { useAuthContext } from '../contexts/AuthContext';
 
 const PrivateRoutes = () => {
-    onAuthStateChanged(auth, (user) => {
-        return(
-            user != null ? <Outlet /> : <Navigate to='login' />
-        )
-    });
+    const { user } = useAuthContext();
+    return(
+        user !== null ? <Outlet/> : <Navigate to='/login'/>
+    )
     
 }
 export default PrivateRoutes;

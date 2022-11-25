@@ -16,11 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <AuthProvider>
         <BrowserRouter>
           <Routes>
-          {/* <PrivateRoutes > */}
-          <Route path="/" element={<App />} />
-          {/* </PrivateRoutes> */}
-          <Route path='/SignUp' element={<SignUp />} />
-          <Route path='/Login' element={<Login />} />
+            <Route path="/" element={<App />} />
+            <Route path='/SignUp' element={<SignUp />} />
+            <Route path='/Login' element={<Login />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
