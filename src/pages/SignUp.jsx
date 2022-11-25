@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 import {
   Flex,
   Box,
@@ -12,7 +13,6 @@ import {
   Button,
   Text,
   useColorModeValue,
-  Link,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { createUserWithEmailAndPassword } from "firebase/auth";

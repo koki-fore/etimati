@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import {
   Flex,
   Box,
@@ -13,7 +14,6 @@ import {
   Heading,
   Text,
   useColorModeValue,
-  Link,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
@@ -33,7 +33,7 @@ const Login = () => {
   // ログイン状態かどうかを判定するイベントを発動する
   useEffect(() => {
     // ログインしている場合、ホームへリダイレクト
-    if (!user) {
+    if (user) {
       navigate('/')
     }
   }, []);
@@ -43,8 +43,9 @@ const Login = () => {
     
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
+      // Signed in 
+      const user = userCredential.user;
+      navigate('/')
     })
     .catch((error) => {
       const errorCode = error.code;
