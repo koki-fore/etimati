@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
 import { AuthProvider } from './contexts/AuthContext'
-// import PrivateRoutes from './utils/PrivateRoutes'
+import PrivateRoutes from './utils/PrivateRoutes'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
 import UserRegister from './pages/UserRegister'
@@ -17,10 +17,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <AuthProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<App />} />
             <Route path='/SignUp' element={<SignUp />} />
             <Route path='/Login' element={<Login />} />
-            <Route path='/UserRegister' element={<UserRegister />} />
+
+            <Route element={<PrivateRoutes/>}>
+              <Route path="/" element={<App />} />
+              <Route path='/UserRegister' element={<UserRegister />} />
+            </Route>
+            
           </Routes>
         </BrowserRouter>
       </AuthProvider>
