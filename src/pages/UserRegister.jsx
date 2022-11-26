@@ -14,17 +14,43 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  Textarea,
+  FormHelperText,
 } from '@chakra-ui/react';
 import { Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react'
-
+import axios from "axios";
+import { useAuthContext } from '../contexts/AuthContext';
+import { useNavigate } from "react-router-dom";
 
 const UserRegister = () => {
   const [screenName, setScreenName] = useState()
   const [userID, setUserID] = useState()
-  const [showAlert, setShowAlert] = useState(false);
+  const [alreadyUserError, setAlreadyUserError] = useState(false);
+  const [description, setDescription] = useState()
+
+  const navigate = useNavigate()
+
+  const { user } = useAuthContext();
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    axios.post('http://localhost:8080/users/', {
+      firebase_FK: user.uid,
+      user_id: userID,
+      screen_name: screenName,
+      first_name: 'string',
+      last_name: 'string',
+      profile_picture_path: 'string',
+      description: description
+    })
+    .then((res) => {
+      console.log(res)
+      navigate('/')
+    })
+    .catch((error) => {
+      console.log(error)
+      setAlreadyUserError(true)
+    })
   }
 
   return (
@@ -57,18 +83,29 @@ const UserRegister = () => {
                   <Input
                     type='text'
                     name="userID"
+                    pattern="^[a-zA-Z0-9]+$"
                     value={userID} 
                     onChange={(e) => {setUserID(e.target.value)}}
-                  />
+                  />  
                 </InputGroup>
+                <FormHelperText>※半角英数字で入力してください</FormHelperText>
               </FormControl>
-              {showAlert && (
+              {alreadyUserError && (
                 <Alert status='error'>
                   <AlertIcon />
-                  <AlertTitle>Error!</AlertTitle>
-                  <AlertDescription>すでにそのIDは使われています。</AlertDescription>
+                  <AlertDescription>ユーザー情報がすでに登録されているかこのユーザーIDがすでに使われています。</AlertDescription>
                 </Alert>
               )}
+              <FormControl id="description">
+                <FormLabel>自己紹介</FormLabel>
+                <Textarea
+                  type='text'
+                  name="description"
+                  placeholder="初めまして！"
+                  value={description}
+                  onChange={(e) => {setDescription(e.target.value)}}
+                />
+              </FormControl>
               <Stack spacing={10} pt={2}>
                 <Button
                   type="submit"
