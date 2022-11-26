@@ -1,36 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-import SignOutButton from './components/SignOutButton'
-
-function App() {
-  const [count, setCount] = useState(0)
-
+import { ChakraProvider } from '@chakra-ui/react'
+import {BrowserRouter, Routes, Route, Link} from "react-router-dom"
+import { AuthProvider } from './contexts/AuthContext'
+import PrivateRoutes from './utils/PrivateRoutes'
+import SignUp from './pages/SignUp'
+import Login from './pages/Login'
+import UserRegister from './pages/UserRegister'
+import Challenges from './pages/Challenges'
+import Header from './components/Header'
+const App = () => {
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <SignOutButton/>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+      
+        <BrowserRouter>
+        <ChakraProvider>
+        <AuthProvider>
+          <Routes>
+            <Route path='/SignUp' element={<SignUp />} />
+            <Route path='/Login' element={<Login />} />
+
+            <Route element={<PrivateRoutes/>}>
+              <Route path='/UserRegister' element={<UserRegister />} />
+              <Route path='/Challenges' element={<Challenges/>} />
+
+            </Route>
+            
+          </Routes>
+        </AuthProvider>
+        </ChakraProvider>
+        </BrowserRouter>
+      )
 }
 
-export default App
+
+export default App;
