@@ -6,6 +6,5 @@ const PrivateRoutes = () => {
     return(
         user !== null ? <Outlet/> : <Navigate to='/login'/>
     )
-    
 }
 export default PrivateRoutes;
