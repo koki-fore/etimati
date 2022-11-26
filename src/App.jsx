@@ -7,9 +7,11 @@ import Login from './pages/Login'
 import UserRegister from './pages/UserRegister'
 import Challenges from './pages/Challenges'
 import Header from './components/Header'
+import Mypage from './pages/Mypage'
+
+
 const App = () => {
   return (
-      
         <BrowserRouter>
         <ChakraProvider>
         <AuthProvider>
@@ -20,7 +22,7 @@ const App = () => {
             <Route element={<PrivateRoutes/>}>
               <Route path='/UserRegister' element={<UserRegister />} />
               <Route path='/Challenges' element={<Challenges/>} />
-
+              <Route path='/' element={<Mypage />} />
             </Route>
             
           </Routes>
