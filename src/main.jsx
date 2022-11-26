@@ -8,6 +8,7 @@ import { AuthProvider } from './contexts/AuthContext'
 // import PrivateRoutes from './utils/PrivateRoutes'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
+import UserRegister from './pages/UserRegister'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/" element={<App />} />
             <Route path='/SignUp' element={<SignUp />} />
             <Route path='/Login' element={<Login />} />
+            <Route path='/UserRegister' element={<UserRegister />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

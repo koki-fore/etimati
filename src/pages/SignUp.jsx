@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import {
   Flex,
   Box,
@@ -24,6 +24,8 @@ const SignUp = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const navigate = useNavigate()
+
   const handleSubmit = (event) => {
     event.preventDefault()
     createUserWithEmailAndPassword(auth, email, password)
@@ -31,6 +33,7 @@ const SignUp = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user)
+        navigate('/userRegister')
       })
       .catch((error) => {
         const errorCode = error.code;
