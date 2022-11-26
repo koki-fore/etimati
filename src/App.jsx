@@ -8,6 +8,7 @@ import UserRegister from './pages/UserRegister'
 import Challenges from './pages/Challenges'
 import Header from './components/Header'
 import Mypage from './pages/Mypage'
+import Home from './pages/Home'
 
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
               <Route path='/UserRegister' element={<UserRegister />} />
               <Route path='/Challenges' element={<Challenges/>} />
               <Route path='/' element={<Mypage />} />
+              <Route path='/Home' element={<Home />} />
             </Route>
             
           </Routes>
