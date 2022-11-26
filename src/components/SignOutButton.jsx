@@ -4,7 +4,7 @@ import auth from "../firebaseEnv"
 
 const SignOutButton = () => {
     
-    const signOut = () => {
+    const pushSignOut = () => {
         signOut(auth)
         .then(() => {
             console.log('Sign-out successful.')
@@ -15,7 +15,7 @@ const SignOutButton = () => {
         });
     }
     return(
-        <Button onClick={signOut}>ログアウト</Button>
+        <Button onClick={pushSignOut}>ログアウト</Button>
     )
 }
 export default SignOutButton
