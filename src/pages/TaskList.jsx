@@ -23,7 +23,7 @@ const avatarStyle = {
 
 }
 
-function TaskList() {
+const TaskList = () => {
   const avatar=reactLogo;
   const name='名前';
   const level=1;
