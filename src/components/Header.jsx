@@ -37,6 +37,7 @@ const NavLink = ({ children }) => (
 
 const headerStyle = {
   top:'0',
+  left:'0',
   width:'100%'
 }
 
@@ -47,7 +48,7 @@ const Header = () => {
   const userName = '名前名前'
   return (
     <>
-      <Box bg={useColorModeValue(theme.colors.main, 'gray.900')} px={4}>
+      <Box bg={useColorModeValue(theme.colors.main, 'gray.900')} style={{...headerStyle}} pos='absolute' >
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Box style={{display:'flex'}}>
             <Box><img src={logo} /></Box>
