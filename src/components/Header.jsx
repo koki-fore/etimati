@@ -49,16 +49,16 @@ const Header = () => {
   return (
     <>
       <Box bg={useColorModeValue(theme.colors.main, 'gray.900')} style={{...headerStyle}} pos='absolute' >
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+        <Flex h={16} alignItems={'center'} justifyContent={'space-between'} pl={4} >
           <Box style={{display:'flex'}}>
             <Box><img src={logo} /></Box>
             <Box>
-              <Text pl={1} fontSize='2xl'>
+              <Text pl={4} fontSize='2xl'>
                 Lv.{experience}
               </Text>
             </Box>
           </Box>
-          <Flex alignItems={'center'}>
+          <Flex alignItems={'center'} pr={4} >
             <Stack direction={'row'} spacing={7}>
               {/*<Button onClick={toggleColorMode}>
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
