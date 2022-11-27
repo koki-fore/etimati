@@ -17,6 +17,7 @@ import {
 
 const footerStyle = {
     bottom:'0',
+    right:'0',
     width:'100%'
 }
 
