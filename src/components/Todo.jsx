@@ -45,10 +45,18 @@ const Todo = (props) => {
   /*バーの使えそうな色
   "blackAlpha" | "gray" |"orange"|  "linkedin"  | "twitter" 
   */
+  /* 達成しているかを表示する */
+  let statusBox;
+  if(status){
+    statusBox = <Box style={{border:'2px solid #000000',width:'2rem',height:'2rem',margin:'6px auto',borderRadius:'2rem',padding:'auto'}}>済</Box>
+  } else {
+    statusBox = <Box style={{border:'2px solid #000000',width:'1.6rem',height:'1.6rem',margin:'6px auto'}}>&emsp;</Box>
+  }
+
   return (
     <Box style={{textAlign: 'center',margin:'0.5rem auto'}}>
       <Grid templateColumns='repeat(6, 1fr)'>
-        <GridItem colSpan={1}>{status}</GridItem>
+        <GridItem colSpan={1}>{statusBox}</GridItem>
         <GridItem colSpan={3}>
           <Menu>
             <MenuButton as={Button} >
