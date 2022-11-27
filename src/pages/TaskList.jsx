@@ -28,13 +28,35 @@ function TaskList() {
   const name='名前';
   const level=1;
   const totalExperience=10;
+  const todoContents = [
+    {
+      id:1,
+      status:true,
+      content:'水2L',
+      experience:6,
+    },
+    {
+      id:2,
+      status:false,
+      content:'枕元にスリッパ',
+      experience:6,
+    }
+  ]
   /*バーの使えそうな色
   "blackAlpha" | "gray" |"orange"|  "linkedin"  | "twitter" 
   */
   return (
     <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
       <Header/>
-      
+      {todoContents.map((todo) => {
+        return (
+          <Todo 
+            key={todo.id} 
+            status={todo.status} 
+            content={todo.content} 
+            experience={todo.experience} />
+        );
+      })}
       <PostButton/>
       <Footer/>
     </Box>
