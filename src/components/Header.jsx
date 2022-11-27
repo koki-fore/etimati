@@ -35,6 +35,11 @@ const NavLink = ({ children }) => (
   </Link>
 );
 
+const headerStyle = {
+  top:'0',
+  width:'100%'
+}
+
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -56,8 +61,7 @@ const Header = () => {
             <Stack direction={'row'} spacing={7}>
               {/*<Button onClick={toggleColorMode}>
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-  </Button>*/}
-
+              </Button>*/}
               <Menu>
                 <MenuButton
                   as={Button}
