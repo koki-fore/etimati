@@ -34,7 +34,7 @@ function Mypage() {
   "blackAlpha" | "gray" |"orange"|  "linkedin"  | "twitter" 
   */
   return (
-    <Box style={{textAlign: 'center'}}>
+    <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
       <Header/>
       <Text fontSize='4xl'>{name}</Text>
       <Box style={{padding:'10px',height:'40vh'}}>
