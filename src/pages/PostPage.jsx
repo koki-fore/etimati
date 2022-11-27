@@ -8,7 +8,19 @@ import {
     GridItem,
     Progress,
     CircularProgress,
-    CircularProgressLabel
+    CircularProgressLabel,
+    Textarea,
+    Heading,
+    Button,
+    Popover,
+    PopoverTrigger,
+    PopoverContent,
+    PopoverHeader,
+    PopoverBody,
+    PopoverFooter,
+    PopoverArrow,
+    PopoverCloseButton,
+    PopoverAnchor,
 } from '@chakra-ui/react';
 import { Image } from '@chakra-ui/react'
 import reactLogo from '../assets/react.svg'
@@ -19,12 +31,6 @@ import PostButton from '../components/PostButton';
 import theme from '../theme'
 
 
-
-const perLevelup=20;
-const avatarStyle = {
-
-}
-
 const PostPage = () => {
   const avatar=reactLogo;
   const name='名前';
@@ -34,24 +40,31 @@ const PostPage = () => {
   "blackAlpha" | "gray" |"orange"|  "linkedin"  | "twitter" 
   */
   return (
-    <Box style={{textAlign: 'center'}}>
+    <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
       <Header/>
-      <Text fontSize='4xl'>{name}</Text>
-      <Box style={{padding:'10px',height:'40vh'}}>
-        <Image src={reactLogo} alt='Avatar' style={{margin: '0 auto', border:'3px solid'}} boxSize={'100%'} />
+      <Heading as='h3' size='lg' style={{margin:'0.7rem'}}>
+        投稿メッセージ
+      </Heading>
+      <Textarea resize={'none'} style={{height:'30vh',width:'80vw'}} />
+      <Heading as='h3' size='lg' style={{margin:'0.7rem'}}>
+        達成タスク
+      </Heading>
+      <Popover>
+        <PopoverTrigger>
+          <Button>選択する</Button>
+        </PopoverTrigger>
+        <PopoverContent>
+        <PopoverHeader>報告したいタスクを選択してください</PopoverHeader>
+          <PopoverBody>ここに一覧を表示する</PopoverBody>
+        </PopoverContent>
+      </Popover>
+      <Heading as='h4' size='md' style={{margin:'0.7rem'}}>
+        選択しているタスク
+      </Heading>
+      <Box style={{margin:'0.7rem'}}>
+        <Button>送信</Button>
       </Box>
-      <Box style={{width:'80%', margin:'0 auto'}} >
-        <CircularProgress value={totalExperience%perLevelup} max={perLevelup} color={theme.colors.main} size={'100%'} >
-          <CircularProgressLabel>
-          <Text fontSize='4xl'>Lv.{level}</Text>
-            <Text style={{padding:'0.4rem'}} fontSize='2xl' >
-              総経験値 : {totalExperience%perLevelup},<br/>
-              あと : {perLevelup-(totalExperience%perLevelup)}
-            </Text>
-          </CircularProgressLabel>
-        </CircularProgress>
-      </Box>
-      <PostButton/>
+      
       <Footer/>
     </Box>
   )
