@@ -48,7 +48,7 @@ const Todo = (props) => {
   /* 達成しているかを表示する */
   let statusBox;
   if(status){
-    statusBox = <Box style={{border:'2px solid #000000',width:'2rem',height:'2rem',margin:'6px auto',borderRadius:'2rem',padding:'auto'}}>済</Box>
+    statusBox = <Box style={{border:'2px double red',width:'2rem',height:'2rem',margin:'6px auto',borderRadius:'2rem',padding:'auto',color:'red',transform:'rotate(-0.05turn)'}}>済</Box>
   } else {
     statusBox = <Box style={{border:'2px solid #000000',width:'1.6rem',height:'1.6rem',margin:'6px auto'}}>&emsp;</Box>
   }
