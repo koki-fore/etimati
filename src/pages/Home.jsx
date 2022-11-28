@@ -3,13 +3,18 @@ import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Head
 import { BsThreeDotsVertical } from "react-icons/bs"
 import { BiChat, BiLike } from "react-icons/bi"
 import { useAuthContext } from '../contexts/AuthContext';
+import { useBoolean } from '@chakra-ui/react'
 import axios from "axios";
+
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 
 const Home = () => {
   const [posts, setPosts] = useState()
   const [usersMe, setUsersMe] = useState()
   
+  const [flag, setFlag] = useBoolean()
 
 
   useLayoutEffect(() => {
@@ -24,7 +29,8 @@ const Home = () => {
   },[])
   if (!posts) return null
   return (
-    <>
+    <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
+    <Header/>
     {posts?.map((post) => (
       <Card maxW='md'>
         <CardHeader>
@@ -65,7 +71,7 @@ const Home = () => {
             },
           }}
         >
-          <Button flex='1' variant='ghost' leftIcon={<BiLike />}>
+          <Button onClick={setFlag.toggle} flex='1' variant='ghost' leftIcon={<BiLike />}>
             いいね
           </Button>
           <Button flex='1' variant='ghost' leftIcon={<BiChat />}>
@@ -124,7 +130,8 @@ const Home = () => {
       </Button>
     </CardFooter>
   </Card>
-  </>
+  <Footer/>
+  </Box>
   )
 }
 export default Home;
