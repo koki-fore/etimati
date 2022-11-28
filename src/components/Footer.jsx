@@ -3,19 +3,13 @@ import {
     Text,
     Grid,
     GridItem,
-    Container,
-    Stack,
-    Link,
 } from '@chakra-ui/react';
 import theme from '../theme'
-import { 
-    BsFillPersonFill,
- } from 'react-icons/bs';
 import {
-  FaSearch,
-  FaList,
-  FaHome,
-  FaUser
+    FaSearch,
+    FaList,
+    FaHome,
+    FaUser
 } from 'react-icons/fa';
 
 
@@ -28,23 +22,13 @@ const footerStyle = {
 const Footer = () => {
   const experience = 10  
   return (
-    <Box bgColor={theme.colors.main} color={'gray.700'} style={{...footerStyle}} pos='absolute'>
-      <Container
-        as={Stack}
-        maxW={'6xl'}
-        py={2}
-        direction={{ base: 'column', md: 'row' }}
-        spacing={2}
-        justify={{ base: 'center', md: 'space-between' }}
-        align={{ base: 'center', md: 'center' }}
-        >
-        <Stack direction={'row'} spacing={6}>
-          <Link href={'#'}><FaHome size={'2rem'} style={{margin:'0 auto'}} />ホーム</Link>
-          <Link href={'#'}><FaUser size={'2rem'} style={{margin:'0 auto'}} />マイページ</Link>
-          <Link href={'#'}><FaList size={'2rem'} style={{margin:'0 auto'}} />タスク</Link>
-          <Link href={'#'}><FaSearch size={'2rem'} style={{margin:'0 auto'}} />検索</Link>
-        </Stack>
-      </Container>
+    <Box bgColor={theme.colors.main} style={{...footerStyle}} pos='absolute'>
+      <Grid  templateColumns='repeat(8, 1fr)'>
+        <GridItem colSpan={2}><FaHome size={'2rem'} style={{margin:'0 auto'}} />ホーム</GridItem>
+        <GridItem colSpan={2}><FaUser size={'2rem'} style={{margin:'0 auto'}} />マイページ</GridItem>
+        <GridItem colSpan={2}><FaList size={'2rem'} style={{margin:'0 auto'}} />タスク</GridItem>
+        <GridItem colSpan={2}><FaSearch size={'2rem'} style={{margin:'0 auto'}} />検索</GridItem>
+      </Grid>
     </Box>
   );
 }
