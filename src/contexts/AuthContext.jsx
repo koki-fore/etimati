@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect } from 'react';
+import { createContext, useState, useContext, useLayoutEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import auth from "../firebaseEnv";
 import axios from 'axios';
@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
     userData,
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, (user) => {
       setUser(user);
       console.log(user)
