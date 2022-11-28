@@ -27,8 +27,8 @@ const App = () => {
             <Route element={<PrivateRoutes/>}>
               <Route path='/UserRegister' element={<UserRegister />} />
               <Route path='/Challenges' element={<Challenges/>} />
-              <Route path='/' element={<Mypage />} />
-              <Route path='/Home' element={<Home />} />
+              <Route path='/Mypage' element={<Mypage />} />
+              <Route path='/' element={<Home />} />
               <Route path='/TaskList' element={<TaskList />} />
               <Route path='/PostPage' element={<PostPage/>} />
             </Route>
