@@ -11,6 +11,7 @@ import Mypage from './pages/Mypage'
 import Home from './pages/Home'
 import TaskList from './pages/TaskList'
 import PostPage from './pages/PostPage'
+import NotFound from './pages/NotFound'
 
 
 const App = () => {
@@ -21,7 +22,8 @@ const App = () => {
           <Routes>
             <Route path='/SignUp' element={<SignUp />} />
             <Route path='/Login' element={<Login />} />
-
+            <Route path='/*' element={<NotFound />} />
+            
             <Route element={<PrivateRoutes/>}>
               <Route path='/UserRegister' element={<UserRegister />} />
               <Route path='/Challenges' element={<Challenges/>} />
