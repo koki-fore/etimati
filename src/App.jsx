@@ -10,6 +10,7 @@ import Header from './components/Header'
 import Mypage from './pages/Mypage'
 import Home from './pages/Home'
 import TaskList from './pages/TaskList'
+import PostPage from './pages/PostPage'
 
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
               <Route path='/' element={<Mypage />} />
               <Route path='/Home' element={<Home />} />
               <Route path='/TaskList' element={<TaskList />} />
+              <Route path='/PostPage' element={<PostPage/>} />
             </Route>
             
           </Routes>
