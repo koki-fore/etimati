@@ -11,24 +11,24 @@ export function useAuthContext() {
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState('');
-  const [userData, setUserData] = useState();
+  // const [userData, setUserData] = useState();
   const value = {
     user,
-    userData,
+    // userData,
   };
 
   useLayoutEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, (user) => {
       setUser(user);
       console.log(user)
-      axios.get('http://localhost:8080/users/me/'+user.uid)
-      .then((res) => {
-        console.log(res.data)
-        setUserData(res.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      // axios.get('http://localhost:8080/users/me/'+user.uid)
+      // .then((res) => {
+      //   console.log(res.data)
+      //   setUserData(res.data)
+      // })
+      // .catch((err) => {
+      //   console.log(err)
+      // })
     });
     return () => {
       unsubscribed();
