@@ -13,7 +13,7 @@ const Home = () => {
   const [posts, setPosts] = useState()
   const [active, setActive] = useState(false)
 
-  const goodClick = () => {
+  const onClickGood = () => {
     setActive(!active)
     console.log(active)
   }
@@ -67,7 +67,7 @@ const Home = () => {
             },
           }}
         >
-          <Button onClick={goodClick} flex='1' variant='ghost' leftIcon={active ? <AiFillLike color={theme.colors.sub} /> : <AiOutlineLike  />}>
+          <Button onClick={onClickGood} flex='1' variant='ghost' leftIcon={active ? <AiFillLike color={theme.colors.sub} /> : <AiOutlineLike  />}>
             いいね
           </Button>
           <Button flex='1' variant='ghost' leftIcon={<BiChat />}>
