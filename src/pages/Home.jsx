@@ -22,7 +22,7 @@ const Home = () => {
     axios.get('http://localhost:8080/posts/')
     .then((res) => {
       console.log(res.data)
-      setPosts(res.data)
+      setPosts(res.data.sort((a, b) => b.id - a.id))
     })
     .catch((err) => {
       console.log(err)
