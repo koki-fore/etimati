@@ -38,7 +38,7 @@ const TaskList = () => {
         "id": 2
     }
   ];
-  const ChallengesList=MakeListOfAccomplishments(todoContents,achievements);
+  const ChallengesList=MakeListOfAccomplishments(todoContents,achievements,'status');
   return (
     <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
       <Header/>
