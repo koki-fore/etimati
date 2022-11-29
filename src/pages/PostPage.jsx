@@ -1,4 +1,6 @@
 import { 
+  useLayoutEffect,
+  useEffect,
   useState,
 } from 'react'
 import {
@@ -29,6 +31,10 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PostButton from '../components/PostButton';
 import theme from '../theme'
+import axios from 'axios';
+import { useAuthContext } from '../contexts/AuthContext';
+import {onAuthStateChanged} from 'firebase/auth';
+import auth from '../firebaseEnv'
 
 
 const PostPage = () => {
@@ -36,9 +42,30 @@ const PostPage = () => {
   const name='名前';
   const level=1;
   const totalExperience=10;
+  //firebaseのuser情報
+  //const { user } = useAuthContext();
+  //BDのuser情報
+  const [userData, setUserData] = useState()
   /*バーの使えそうな色
   "blackAlpha" | "gray" |"orange"|  "linkedin"  | "twitter" 
   */
+  useLayoutEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      console.log(user)
+      axios.get('http://localhost:8080/users/me/'+user.uid)
+      .then((res) => {
+        console.log(res.data)
+        setUserData(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })})
+  },[])
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    
+  }
+  //if (!user) return null;
   return (
     <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
       <Header/>
@@ -62,7 +89,7 @@ const PostPage = () => {
         選択しているタスク
       </Heading>
       <Box style={{margin:'0.7rem'}}>
-        <Button>送信</Button>
+        <Button onClick={handleSubmit} >送信</Button>
       </Box>
       
       <Footer/>
