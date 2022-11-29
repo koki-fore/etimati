@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState } from "react"
-import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Heading, Image, Text } from "@chakra-ui/react"
+import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Heading, Image, Text, IconButton } from "@chakra-ui/react"
 import { AiFillLike, AiOutlineLike} from "react-icons/ai"
 import { BiChat } from "react-icons/bi"
 // import { useAuthContext } from '../contexts/AuthContext';
@@ -43,6 +43,7 @@ const Home = () => {
                 <Text color={theme.colors.accent} textAlign='left'>{post.user.user_id}</Text>
               </Box>
             </Flex>
+            <Text>{post.created_at}</Text>
           </Flex>
         </CardHeader>
         <CardBody>
