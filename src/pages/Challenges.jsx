@@ -1,20 +1,14 @@
 import axios from "axios"
 import theme from '../theme';
-import { Box, Button, Flex, Accordion, AccordionButton, AccordionItem, AccordionPanel, AccordionIcon, HStack, Tabs, TabList, Tab, TabPanels, TabPanel,  } from "@chakra-ui/react"
+import { Box, Accordion, AccordionButton, AccordionItem, AccordionPanel, AccordionIcon, Tabs, TabList, Tab, TabPanels, TabPanel } from "@chakra-ui/react"
 import { CheckIcon } from "@chakra-ui/icons"
 import { useLayoutEffect, useState } from "react"
-import { useAuthContext } from '../contexts/AuthContext';
 
 const Challenges = () => {
-    const { userData } = useAuthContext();
 
-    const [usersMe, setUsersMe] = useState()
     const [challenges, setChallenges] = useState()
 
-    
-    
     useLayoutEffect(() => {
-        setUsersMe(userData)
 
         axios.get('http://localhost:8080/challenges/')
         .then((res) => {
@@ -26,7 +20,7 @@ const Challenges = () => {
         })
     },[])
 
-    if (!challenges || !userData) return null
+    if (!challenges) return null
 
     return (
         <Tabs isFitted variant='enclosed'>
