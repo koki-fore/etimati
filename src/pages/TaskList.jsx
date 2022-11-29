@@ -15,7 +15,9 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PostButton from '../components/PostButton';
 import theme from '../theme';
-import Todo from '../components/Todo'
+import Todo from '../components/Todo';
+import allChallenges from '../assets/challenges.json';
+import MakeListOfAccomplishments from '../MakeListOfAccomplishments';
 
 
 const perLevelup=20;
@@ -24,29 +26,19 @@ const avatarStyle = {
 }
 
 const TaskList = () => {
-  const avatar=reactLogo;
   const name='名前';
   const level=1;
   const totalExperience=10;
-  const todoContents = [
+  const todoContents = allChallenges;
+  const achievements = [
     {
-      id:1,
-      status:true,
-      content:'水2L',
-      contentReason:'水がないと死ぬ',
-      experience:6,
-    },
-    {
-      id:2,
-      status:false,
-      content:'枕元にスリッパ',
-      contentReason:'窓などが割れてガラスの破片が散らばるため',
-      experience:6,
+        "title": "スリッパを履くようにする",
+        "text": "災害が発生すると、割れた窓ガラスが部屋の中に散乱したり、土砂などが入り込んでしまったりすることがあります。そういった状況を素足や靴下などで歩くのは危険です。防災スリッパという頑丈で足元を守ってくれる商品もありますので是非一度ご覧ください。",
+        "experience_point": 50,
+        "id": 2
     }
-  ]
-  /*バーの使えそうな色
-  "blackAlpha" | "gray" |"orange"|  "linkedin"  | "twitter" 
-  */
+  ];
+  const ChallengesList=MakeListOfAccomplishments(todoContents,achievements);
   return (
     <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
       <Header/>
@@ -56,14 +48,14 @@ const TaskList = () => {
         <GridItem colSpan={1}>経験値</GridItem>
         <GridItem colSpan={1}>報告</GridItem>
       </Grid>
-      {todoContents.map((todo) => {
+      {ChallengesList.map((todo) => {
         return (
           <Todo 
             key={todo.id} 
             status={todo.status} 
-            content={todo.content} 
-            contentReason={todo.contentReason}
-            experience={todo.experience} />
+            content={todo.title} 
+            contentReason={todo.text}
+            experience={todo.experience_point} />
         );
       })}
       <PostButton/>
