@@ -63,7 +63,7 @@ const Todo = (props) => {
               {content}
             </MenuButton>
             <MenuList>
-              <MenuItem>
+              <MenuItem style={{width:'78vw'}}>
                 {contentReason}
               </MenuItem>
             </MenuList>
