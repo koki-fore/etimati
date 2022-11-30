@@ -8,6 +8,7 @@ import theme from '../theme';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useNavigate } from "react-router-dom";
+import palpal from '../assets/palpal_1.png'
 
 const Home = () => {
   const [posts, setPosts] = useState()
@@ -39,7 +40,7 @@ const Home = () => {
         <CardHeader>
           <Flex spacing='1'>
             <Flex flex='4' gap='4' alignItems='center' flexWrap='wrap'>
-              <Avatar name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
+              <Avatar name='palpal' src={palpal} />
               <Box>
                 <Heading textAlign='left' size='sm'>{post.user.screen_name}</Heading>
                 <Text color={theme.colors.accent} textAlign='left'>{post.user.user_id}</Text>

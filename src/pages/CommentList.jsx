@@ -8,6 +8,7 @@ import Footer from '../components/Footer'
 import { AiFillLike, AiOutlineLike} from "react-icons/ai"
 import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Heading, Image, Text, IconButton, Textarea, Spacer, Stack, HStack } from "@chakra-ui/react"
 import { useAuthContext } from "../contexts/AuthContext";
+import palpal from '../assets/palpal_1.png'
 
 const CommentList = () => {
 
@@ -61,7 +62,7 @@ const CommentList = () => {
         <CardHeader>
           <Flex spacing='1'>
             <Flex flex='4' gap='4' alignItems='center' flexWrap='wrap'>
-              <Avatar name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
+              <Avatar name='Palpal' src={palpal} />
               <Box>
                 <Heading textAlign='left' size='sm'>{post.user.screen_name}</Heading>
                 <Text color={theme.colors.accent} textAlign='left'>{post.user.user_id}</Text>
@@ -108,7 +109,7 @@ const CommentList = () => {
           <Stack>
             <Flex spacing='1'>
               <Flex flex='4' gap='4' alignItems='center' flexWrap='wrap'>
-                <Avatar name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
+                <Avatar name='Palpal' src={palpal} />
                 <Box>
                   <Heading textAlign='left' size='sm'>{comment.user.screen_name}</Heading>
                   <Text color={theme.colors.accent} textAlign='left'>{comment.user.user_id}</Text>
