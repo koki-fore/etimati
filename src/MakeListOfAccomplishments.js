@@ -15,8 +15,6 @@ function MakeListOfAccomplishments(all, achievements,str){
       }
       return all;
     case 'only':
-      console.log(all)
-      console.log(achievements)
       let json=[];
       for(let i=0;i<achievements.length;i++){
         json.push({

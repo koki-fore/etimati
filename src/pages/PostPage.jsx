@@ -5,12 +5,6 @@ import {
 } from 'react'
 import {
     Box,
-    Text,
-    Grid,
-    GridItem,
-    Progress,
-    CircularProgress,
-    CircularProgressLabel,
     Textarea,
     Heading,
     Button,
@@ -23,6 +17,10 @@ import {
     PopoverArrow,
     PopoverCloseButton,
     PopoverAnchor,
+    Radio, 
+    RadioGroup,
+    Stack,
+    Select
 } from '@chakra-ui/react';
 import { Image } from '@chakra-ui/react'
 import reactLogo from '../assets/react.svg'
@@ -35,6 +33,8 @@ import axios from 'axios';
 import { useAuthContext } from '../contexts/AuthContext';
 import {onAuthStateChanged} from 'firebase/auth';
 import auth from '../firebaseEnv'
+import allChallenges from '../assets/challenges.json';
+import MakeListOfAccomplishments from '../MakeListOfAccomplishments';
 
 
 const PostPage = () => {
@@ -42,20 +42,23 @@ const PostPage = () => {
   const name='名前';
   const level=1;
   const totalExperience=10;
+  const todoContents = allChallenges;
   //firebaseのuser情報
   //const { user } = useAuthContext();
   //BDのuser情報
   const [userData, setUserData] = useState()
-  /*バーの使えそうな色
-  "blackAlpha" | "gray" |"orange"|  "linkedin"  | "twitter" 
-  */
+  //達成したタスクを表示するためのchallengeId
+  const [value, setValue] = useState('')
+  const [ChallengesList, setChallengesList] = useState();
   useLayoutEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      console.log(user)
+      console.log('user = '+user.uid)
       axios.get('http://localhost:8080/users/me/'+user.uid)
       .then((res) => {
-        console.log(res.data)
+        console.log('userdata = '+JSON.stringify(res.data))
+        console.log('challenge_completed = '+JSON.stringify(res.data.challenge_completed))
         setUserData(res.data)
+        setChallengesList(MakeListOfAccomplishments(todoContents,res.data.challenge_completed,'only'));
       })
       .catch((err) => {
         console.log(err)
@@ -65,7 +68,15 @@ const PostPage = () => {
     event.preventDefault()
     
   }
-  //if (!user) return null;
+  const handleSelect = (e) => {
+    setValue(e)
+    console.log('handleSelect'+e)
+  }
+  if (!userData){
+    return null;
+  } 
+  
+  console.log('userData = '+JSON.stringify(userData))
   return (
     <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
       <Header/>
@@ -76,17 +87,13 @@ const PostPage = () => {
       <Heading as='h3' size='lg' style={{margin:'0.7rem'}}>
         達成タスク
       </Heading>
-      <Popover>
-        <PopoverTrigger>
-          <Button>選択する</Button>
-        </PopoverTrigger>
-        <PopoverContent>
-        <PopoverHeader>報告したいタスクを選択してください</PopoverHeader>
-          <PopoverBody>ここに一覧を表示する</PopoverBody>
-        </PopoverContent>
-      </Popover>
+        <Select placeholder='達成したチャレンジを選択してください' value={value} onChange={handleSelect}>
+            {ChallengesList.map(challenge => (
+              <option value={challenge.id} key={challenge.id} >{challenge.title}</option>
+            ))}
+        </Select>
       <Heading as='h4' size='md' style={{margin:'0.7rem'}}>
-        選択しているタスク
+        選択しているタスク{value}
       </Heading>
       <Box style={{margin:'0.7rem'}}>
         <Button onClick={handleSubmit} >送信</Button>
