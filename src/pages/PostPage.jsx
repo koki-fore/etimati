@@ -35,6 +35,7 @@ import {onAuthStateChanged} from 'firebase/auth';
 import auth from '../firebaseEnv'
 import allChallenges from '../assets/challenges.json';
 import MakeListOfAccomplishments from '../MakeListOfAccomplishments';
+import { Spinner } from '@chakra-ui/react'
 
 
 const PostPage = () => {

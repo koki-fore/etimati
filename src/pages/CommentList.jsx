@@ -9,6 +9,7 @@ import { AiFillLike, AiOutlineLike} from "react-icons/ai"
 import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Heading, Image, Text, IconButton, Textarea, Spacer, Stack, HStack } from "@chakra-ui/react"
 import { useAuthContext } from "../contexts/AuthContext";
 import palpal from '../assets/palpal_1.png'
+import { Spinner } from '@chakra-ui/react'
 
 const CommentList = () => {
 

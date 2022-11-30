@@ -18,6 +18,7 @@ import Footer from '../components/Footer';
 import PostButton from '../components/PostButton';
 import theme from '../theme'
 import palpal from '../assets/palpal_background.png'
+import { Spinner } from '@chakra-ui/react'
 
 
 const perLevelup=20;

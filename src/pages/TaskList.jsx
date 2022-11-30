@@ -23,6 +23,7 @@ import MakeListOfAccomplishments from '../MakeListOfAccomplishments';
 import {onAuthStateChanged} from 'firebase/auth';
 import auth from '../firebaseEnv';
 import axios from 'axios';
+import { Spinner } from '@chakra-ui/react'
 
 
 const perLevelup=20;

@@ -3,6 +3,7 @@ import theme from '../theme';
 import { Box, Accordion, AccordionButton, AccordionItem, AccordionPanel, AccordionIcon, Tabs, TabList, Tab, TabPanels, TabPanel } from "@chakra-ui/react"
 import { CheckIcon } from "@chakra-ui/icons"
 import { useEffect, useState } from "react"
+import { Spinner } from '@chakra-ui/react'
 
 const Challenges = () => {
 
