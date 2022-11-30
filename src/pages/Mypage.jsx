@@ -17,7 +17,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PostButton from '../components/PostButton';
 import theme from '../theme'
-
+import palpal from '../assets/palpal_background.png'
 
 
 const perLevelup=20;
@@ -38,7 +38,7 @@ function Mypage() {
       <Header/>
       <Text fontSize='4xl'>{name}</Text>
       <Box style={{padding:'10px',height:'40vh'}}>
-        <Image src={reactLogo} alt='Avatar' style={{margin: '0 auto', border:'3px solid'}} boxSize={'100%'} />
+        <Image src={palpal} alt='Avatar' style={{margin: '0 auto', border:'0px solid'}} boxSize={'100%'} />
       </Box>
       <Box style={{width:'80%', margin:'0 auto'}} >
         <CircularProgress value={totalExperience%perLevelup} max={perLevelup} color={theme.colors.main} size={'100%'} >
