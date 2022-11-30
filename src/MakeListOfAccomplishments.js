@@ -8,7 +8,7 @@ function MakeListOfAccomplishments(all, achievements,str){
     case 'status':
       let tureFalse = new Array(all.length).fill(false);
       for(let i=0;i<achievements.length;i++){
-        tureFalse[achievements[i].id-1]=true;
+        tureFalse[achievements[i].challenge_FK-1]=true;
       }
       for(let i=0;i<all.length;i++){
         all[i].status=tureFalse[i];
