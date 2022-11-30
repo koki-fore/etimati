@@ -14,8 +14,7 @@ const CommentList = () => {
   const { user } = useAuthContext();
 
   const [post, setPost] = useState()
-  const [userData, setUserData] = useState()
-  const [comment, setComment] = useState()
+  const [postComment, setPostComment] = useState()
   
   const {id} = useParams()
 
@@ -23,25 +22,25 @@ const CommentList = () => {
     axios.get('http://localhost:8080/posts/' + id)
     .then((res) => {
       setPost(res.data)
-      console.log(res.data)
     })
     .catch((err) => {
       console.log(err)
     })
   }, [])
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault()
     axios.get('http://localhost:8080/users/me/'+user.uid)
     .then((res) => {
       console.log(res.data)
-      setUserData(res.data)
       axios.post('http://localhost:8080/comments/', {
-        user_FK: userData.id,
+        user_FK: res.data.id,
         post_FK: post.id,
-        text: comment
+        text: postComment
       })
       .then((res)=>{
         console.log(res)
+        window.location.reload()
       })
       .catch((err) => {
         console.log(err)
@@ -87,12 +86,12 @@ const CommentList = () => {
         <Stack spacing={2} >
           <Textarea 
             type='text'
-            name="comment"
+            name="postComment"
             placeholder="コメントを記入"
             isRequired={true}
             size='md'
-            value={comment}
-            onChange={(e) => {setComment(e.target.value)}}
+            value={postComment}
+            onChange={(e) => {setPostComment(e.target.value)}}
           />
           <Flex minWidth='max-content' alignItems='center' gridGap={2} gap='2'>
             <Box p='2'>
@@ -102,6 +101,8 @@ const CommentList = () => {
           </Flex>
         </Stack>
       </form>
+
+      {post.comments.sort((a, b) => b.id - a.id)?.map((comment) => (
       <Card maxW='md'>
         <CardHeader>
           <Stack>
@@ -109,17 +110,17 @@ const CommentList = () => {
               <Flex flex='4' gap='4' alignItems='center' flexWrap='wrap'>
                 <Avatar name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
                 <Box>
-                  <Heading textAlign='left' size='sm'>{post.user.screen_name}</Heading>
-                  <Text color={theme.colors.accent} textAlign='left'>{post.user.user_id}</Text>
+                  <Heading textAlign='left' size='sm'>{comment.user.screen_name}</Heading>
+                  <Text color={theme.colors.accent} textAlign='left'>{comment.user.user_id}</Text>
                 </Box>
               </Flex>
-              <Text>{post.created_at}</Text>
+              <Text>{comment.created_at}</Text>
             </Flex>
-            <Text>素晴らしいですね！楽しい楽しい楽しい</Text>
+            <Text>{comment.text}</Text>
           </Stack>
         </CardHeader>
-        
       </Card>
+      ))}
       
       {/* <Footer/> */}
     </Box>
