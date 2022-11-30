@@ -17,6 +17,8 @@ import {
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import auth from "../firebaseEnv";
+import SignHeader from "../components/SignHeader";
+import theme from "../theme";
 
 
 const SignUp = () => {
@@ -44,11 +46,13 @@ const SignUp = () => {
   }
 
   return (
+    <Box>
+    <SignHeader />
     <Flex
       minH={'100vh'}
       align={'center'}
       justify={'center'}
-      bg={useColorModeValue('gray.50', 'gray.800')}>
+      >
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
           {/* ロゴ入れる */}
@@ -89,17 +93,21 @@ const SignUp = () => {
                   type="submit"
                   loadingText="Submitting"
                   size="lg"
-                  bg={'blue.400'}
+                  bg={theme.colors.main}
                   color={'white'}
                   _hover={{
-                    bg: 'blue.500',
-                  }}>
+                    bg: theme.colors.sub,
+                  }}
+                  _focus={{
+                    boxShadow: 'none',
+                  }}
+                  >
                   サインアップ
                 </Button>
               </Stack>
               <Stack pt={6}>
                 <Text align={'center'}>
-                  ログインは<Link to={'/login'} color={'blue.400'}>こちら</Link>
+                  ログインは<Link to={'/login'} color={theme.colors.accent}>こちら</Link>
                 </Text>
               </Stack>
             </Stack>
@@ -107,6 +115,7 @@ const SignUp = () => {
         </Box>
       </Stack>
     </Flex>
+    </Box>
   );
 };
 

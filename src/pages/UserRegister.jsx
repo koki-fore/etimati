@@ -21,6 +21,8 @@ import { Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react
 import axios from "axios";
 import { useAuthContext } from '../contexts/AuthContext';
 import { useNavigate } from "react-router-dom";
+import SignHeader from "../components/SignHeader";
+import theme from "../theme";
 
 const UserRegister = () => {
   const [screenName, setScreenName] = useState()
@@ -54,17 +56,19 @@ const UserRegister = () => {
   }
 
   return (
+    <Box>
+      <SignHeader />
     <Flex
       minH={'100vh'}
       align={'center'}
       justify={'center'}
-      bg={useColorModeValue('gray.50', 'gray.800')}>
+      >
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
           {/* ロゴ入れる */}
         </Stack>
         <Stack align={'center'}>
-          <Heading fontSize={'4xl'}>ユーザー情報</Heading>
+          <Heading fontSize={'2xl'} color={theme.colors.accent}>ユーザー情報</Heading>
         </Stack>
         <Box
           rounded={'lg'}
@@ -101,7 +105,7 @@ const UserRegister = () => {
                 <Textarea
                   type='text'
                   name="description"
-                  placeholder="初めまして！"
+                  placeholder=""
                   value={description}
                   onChange={(e) => {setDescription(e.target.value)}}
                 />
@@ -111,11 +115,15 @@ const UserRegister = () => {
                   type="submit"
                   loadingText="Submitting"
                   size="lg"
-                  bg={'blue.400'}
+                  bg={theme.colors.main}
                   color={'white'}
                   _hover={{
-                    bg: 'blue.500',
-                  }}>
+                    bg: theme.colors.sub,
+                  }}
+                  _focus={{
+                    boxShadow: 'none',
+                  }}
+                  >
                   登録
                 </Button>
               </Stack>
@@ -124,6 +132,7 @@ const UserRegister = () => {
         </Box>
       </Stack>
     </Flex>
+    </Box>
   );
 };
 

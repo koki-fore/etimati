@@ -21,6 +21,7 @@ import theme from '../theme';
 import logo from '../assets/react.svg';//仮置き
 import experience2various from '../experience2various';
 import SignOutButton from './SignOutButton';
+import palpal from '../assets/palpal_1.png'
 
 
 const NavLink = ({ children }) => (
@@ -43,14 +44,15 @@ const headerStyle = {
   width:'100%'
 }
 
-const Header = (props) => {
-  const userInfo=props.userInfo;
-  console.log('userInfo = '+JSON.stringify(userInfo));
+const Header = () => {
+  // const userInfo=props.userInfo;
+  // console.log('userInfo = '+JSON.stringify(userInfo));
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  //const experience = 10;  //仮置き
-  const userName = userInfo.user_id;
-  const {level, upto,avatar}=experience2various(userInfo.experience_point_num);
+  const experience = 10;  //仮置き
+  const userName = 'palpal'
+  // const userName = userInfo.user_id;
+  // const {level, upto,avatar}=experience2various(userInfo.experience_point_num);
   
 
   return (
@@ -61,7 +63,7 @@ const Header = (props) => {
             <Box><img src={logo} /></Box>
             <Box>
               <Text pl={4} fontSize='2xl'>
-                Lv.{level}
+                Lv.{experience}
               </Text>
             </Box>
           </Box>
@@ -79,7 +81,7 @@ const Header = (props) => {
                   minW={0}>
                   <Avatar
                     size={'sm'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
+                    src={palpal}
                   />
                 </MenuButton>
                 <MenuList alignItems={'center'}>
@@ -87,7 +89,7 @@ const Header = (props) => {
                   <Center>
                     <Avatar
                       size={'2xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
+                      src={palpal}
                     />
                   </Center>
                   <br />
