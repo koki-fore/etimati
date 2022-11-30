@@ -122,7 +122,7 @@ const CommentList = () => {
       </Card>
       ))}
       
-      {/* <Footer/> */}
+      <Footer/>
     </Box>
   )
 }
