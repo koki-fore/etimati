@@ -6,7 +6,7 @@ import SignUp from './pages/SignUp'
 import Login from './pages/Login'
 import UserRegister from './pages/UserRegister'
 import Challenges from './pages/Challenges'
-import Header from './components/Header'
+import CommentList from './pages/CommentList'
 import Mypage from './pages/Mypage'
 import Home from './pages/Home'
 import TaskList from './pages/TaskList'
@@ -31,6 +31,7 @@ const App = () => {
               <Route path='/' element={<Home />} />
               <Route path='/TaskList' element={<TaskList />} />
               <Route path='/PostPage' element={<PostPage/>} />
+              <Route path='/CommentList/:id' element={<CommentList />} />
             </Route>
             
           </Routes>

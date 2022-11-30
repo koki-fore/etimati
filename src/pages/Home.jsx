@@ -7,13 +7,15 @@ import axios from "axios";
 import theme from '../theme';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [posts, setPosts] = useState()
   const [active, setActive] = useState(false)
 
-  const goodClick = () => {
+  const navigate = useNavigate()
+
+  const onClickGood = () => {
     setActive(!active)
     console.log(active)
   }
@@ -67,10 +69,10 @@ const Home = () => {
             },
           }}
         >
-          <Button onClick={goodClick} flex='1' variant='ghost' leftIcon={active ? <AiFillLike color={theme.colors.sub} /> : <AiOutlineLike  />}>
+          <Button onClick={onClickGood} flex='1' variant='ghost' leftIcon={active ? <AiFillLike color={theme.colors.sub} /> : <AiOutlineLike  />}>
             いいね
           </Button>
-          <Button flex='1' variant='ghost' leftIcon={<BiChat />}>
+          <Button onClick={() => navigate('/commentList/'+post.id)} flex='1' variant='ghost' leftIcon={<BiChat />}>
             コメント
           </Button>
         </CardFooter>
