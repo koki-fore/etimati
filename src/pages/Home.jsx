@@ -50,8 +50,8 @@ const Home = () => {
           </Flex>
         </CardHeader>
         <CardBody>
-          <Heading as='h4' size='md' >{post.challenge.title}</Heading>
-          <Text>
+          <Heading as='h4' size='md' style={{textAlign: 'center'}}>{post.challenge.title}</Heading>
+          <Text style={{textAlign: 'left'}}>
             {post.text}
           </Text>
         </CardBody>

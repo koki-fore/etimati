@@ -56,7 +56,7 @@ const CommentList = () => {
   if (!post) return null
 
   return (
-    <Box style={{textAlign: 'left',paddingTop:'4rem'}}>
+    <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
       <Header/>
       <Card maxW='md'>
         <CardHeader>
@@ -73,7 +73,7 @@ const CommentList = () => {
         </CardHeader>
         <CardBody >
           <Heading as='h4' size='md' style={{textAlign: 'center'}}>{post.challenge.title}</Heading>
-          <Text>
+          <Text style={{textAlign: 'left'}}>
             {post.text}
           </Text>
         </CardBody>
