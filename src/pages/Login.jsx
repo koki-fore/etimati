@@ -21,6 +21,8 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import auth from "../firebaseEnv";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
+import SignHeader from "../components/SignHeader";
+import theme from "../theme";
 
 
 const Login = () => {
@@ -60,11 +62,12 @@ const Login = () => {
   }
 
   return (
+    <Box>
+      <SignHeader />
     <Flex
       minH={'100vh'}
       align={'center'}
-      justify={'center'}
-      bg={useColorModeValue('gray.50', 'gray.800')}>
+      justify={'center'}>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
           {/* ロゴ入れる */}
@@ -112,11 +115,15 @@ const Login = () => {
                   type="submit"
                   loadingText="Submitting"
                   size="lg"
-                  bg={'blue.400'}
+                  bg={theme.colors.main}
                   color={'white'}
                   _hover={{
-                    bg: 'blue.500',
-                  }}>
+                    bg: theme.colors.sub,
+                  }}
+                  _focus={{
+                    boxShadow: 'none',
+                  }}
+                  >
                   ログイン
                 </Button>
               </Stack>
@@ -131,6 +138,7 @@ const Login = () => {
         </Box>
       </Stack>
     </Flex>
+    </Box>
   );
 };
 

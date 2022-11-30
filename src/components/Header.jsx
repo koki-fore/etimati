@@ -21,6 +21,7 @@ import theme from '../theme';
 import logo from '../assets/react.svg';//仮置き
 import experience2various from '../experience2various';
 import SignOutButton from './SignOutButton';
+import palpal from '../assets/palpal_1.png'
 
 
 const NavLink = ({ children }) => (
@@ -79,7 +80,7 @@ const Header = (props) => {
                   minW={0}>
                   <Avatar
                     size={'sm'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
+                    src={palpal}
                   />
                 </MenuButton>
                 <MenuList alignItems={'center'}>
@@ -87,7 +88,7 @@ const Header = (props) => {
                   <Center>
                     <Avatar
                       size={'2xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
+                      src={palpal}
                     />
                   </Center>
                   <br />

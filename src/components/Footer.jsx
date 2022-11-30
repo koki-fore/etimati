@@ -2,7 +2,10 @@ import {
     Box,
     Text,
     Grid,
+    Button,
     GridItem,
+    HStack,
+    VStack,
 } from '@chakra-ui/react';
 import theme from '../theme'
 import {
@@ -11,6 +14,7 @@ import {
     FaHome,
     FaUser
 } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 
 const footerStyle = {
@@ -20,14 +24,15 @@ const footerStyle = {
 }
 
 const Footer = () => {
+  const navigate = useNavigate()
   const experience = 10  
   return (
     <Box bgColor={theme.colors.main} style={{...footerStyle}} pos='absolute'>
       <Grid  templateColumns='repeat(8, 1fr)'>
-        <GridItem colSpan={2}><FaHome size={'2rem'} style={{margin:'0 auto'}} />ホーム</GridItem>
-        <GridItem colSpan={2}><FaUser size={'2rem'} style={{margin:'0 auto'}} />マイページ</GridItem>
-        <GridItem colSpan={2}><FaList size={'2rem'} style={{margin:'0 auto'}} />タスク</GridItem>
-        <GridItem colSpan={2}><FaSearch size={'2rem'} style={{margin:'0 auto'}} />検索</GridItem>
+        <GridItem as='button' _hover={{bg: theme.colors.sub}} colSpan={2} onClick={() => navigate('/')}><FaHome size={'2rem'} style={{margin:'0 auto'}} />ホーム</GridItem>
+        <GridItem as='button' _hover={{bg: theme.colors.sub}} colSpan={2} onClick={() => navigate('/mypage')}><FaUser size={'2rem'} style={{margin:'0 auto'}} />マイページ</GridItem>
+        <GridItem as='button' _hover={{bg: theme.colors.sub}} colSpan={2} onClick={() => navigate('/taskList')}><FaList size={'2rem'} style={{margin:'0 auto'}} />タスク</GridItem>
+        <GridItem as='button' _hover={{bg: theme.colors.sub}} colSpan={2} onClick={() => navigate('/postPage')}><FaSearch size={'2rem'} style={{margin:'0 auto'}} />検索</GridItem>
       </Grid>
     </Box>
   );
