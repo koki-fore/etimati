@@ -1,4 +1,5 @@
 import { 
+  useLayoutEffect,
   useState,
 } from 'react'
 import {
@@ -18,6 +19,9 @@ import theme from '../theme';
 import Todo from '../components/Todo';
 import allChallenges from '../assets/challenges.json';
 import MakeListOfAccomplishments from '../MakeListOfAccomplishments';
+import {onAuthStateChanged} from 'firebase/auth';
+import auth from '../firebaseEnv';
+import axios from 'axios';
 
 
 const perLevelup=20;
@@ -30,23 +34,33 @@ const TaskList = () => {
   const level=1;
   const totalExperience=10;
   const todoContents = allChallenges;
-  const achievements = [
-    {
-        "title": "スリッパを履くようにする",
-        "text": "災害が発生すると、割れた窓ガラスが部屋の中に散乱したり、土砂などが入り込んでしまったりすることがあります。そういった状況を素足や靴下などで歩くのは危険です。防災スリッパという頑丈で足元を守ってくれる商品もありますので是非一度ご覧ください。",
-        "experience_point": 50,
-        "id": 2
-    }
-  ];
-  const ChallengesList=MakeListOfAccomplishments(todoContents,achievements);
+  const [userData, setUserData] = useState();
+  const [ChallengesList, setChallengesList] = useState();
+  useLayoutEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      console.log('user = '+user.uid)
+      axios.get('http://localhost:8080/users/me/'+user.uid)
+      .then((res) => {
+        console.log('userdata = '+JSON.stringify(res.data))
+        console.log('challenge_completed = '+JSON.stringify(res.data.challenge_completed))
+        setUserData(res.data)
+        setChallengesList(MakeListOfAccomplishments(todoContents,res.data.challenge_completed,'status'));
+        console.log('status = '+JSON.stringify(MakeListOfAccomplishments(todoContents,res.data.challenge_completed,'status')))
+      })
+      .catch((err) => {
+        console.log(err)
+      })})
+  },[])
+  if (!userData){
+    return null;
+  } 
   return (
     <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
       <Header/>
-      <Grid templateColumns='repeat(6, 1fr)'>
+      <Grid templateColumns='repeat(5, 1fr)'>
         <GridItem colSpan={1}>達成</GridItem>
         <GridItem colSpan={3}>内容</GridItem>
         <GridItem colSpan={1}>経験値</GridItem>
-        <GridItem colSpan={1}>報告</GridItem>
       </Grid>
       {ChallengesList.map((todo) => {
         return (
