@@ -96,7 +96,7 @@ const Header = (props) => {
                   </Center>
                   <br />
                   <MenuDivider />
-                  <MenuItem><SignOutButton/></MenuItem>
+                  <SignOutButton/>
                 </MenuList>
               </Menu>
             </Stack>
