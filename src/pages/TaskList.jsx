@@ -45,7 +45,7 @@ const TaskList = () => {
         console.log('challenge_completed = '+JSON.stringify(res.data.challenge_completed))
         setUserData(res.data)
         setChallengesList(MakeListOfAccomplishments(todoContents,res.data.challenge_completed,'status'));
-        console.log(MakeListOfAccomplishments(todoContents,res.data.challenge_completed,'status'))
+        console.log('status = '+JSON.stringify(MakeListOfAccomplishments(todoContents,res.data.challenge_completed,'status')))
       })
       .catch((err) => {
         console.log(err)
