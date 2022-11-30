@@ -7,9 +7,14 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { AiFillLike, AiOutlineLike} from "react-icons/ai"
 import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Heading, Image, Text, IconButton, Textarea, Spacer, Stack, HStack } from "@chakra-ui/react"
+import { useAuthContext } from "../contexts/AuthContext";
 
 const CommentList = () => {
+
+  const { user } = useAuthContext();
+
   const [post, setPost] = useState()
+  const [userData, setUserData] = useState()
   const [comment, setComment] = useState()
   
   const {id} = useParams()
@@ -24,6 +29,29 @@ const CommentList = () => {
       console.log(err)
     })
   }, [])
+
+  const handleSubmit = () => {
+    axios.get('http://localhost:8080/users/me/'+user.uid)
+    .then((res) => {
+      console.log(res.data)
+      setUserData(res.data)
+      axios.post('http://localhost:8080/comments/', {
+        user_FK: userData.id,
+        post_FK: post.id,
+        text: comment
+      })
+      .then((res)=>{
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    
+  }
 
   if (!post) return null
 
@@ -55,7 +83,7 @@ const CommentList = () => {
           alt='Chakra UI'
         /> */}
       </Card>
-      
+      <form onSubmit={handleSubmit}>
         <Stack spacing={2} >
           <Textarea 
             type='text'
@@ -73,6 +101,7 @@ const CommentList = () => {
             <Button type='submit' loadingText='送信中' bg={theme.colors.main} color={'white'} _hover={{bg: theme.colors.sub}}>コメントをする</Button>
           </Flex>
         </Stack>
+      </form>
       <Card maxW='md'>
         <CardHeader>
           <Stack>
