@@ -20,6 +20,7 @@ import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import theme from '../theme';
 import logo from '../assets/react.svg';//仮置き
 import experience2various from '../experience2various';
+import SignOutButton from './SignOutButton';
 
 
 const NavLink = ({ children }) => (
@@ -95,7 +96,7 @@ const Header = (props) => {
                   </Center>
                   <br />
                   <MenuDivider />
-                  <MenuItem><Button>Logout</Button></MenuItem>
+                  <MenuItem><SignOutButton/></MenuItem>
                 </MenuList>
               </Menu>
             </Stack>
