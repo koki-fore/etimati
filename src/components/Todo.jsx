@@ -55,7 +55,7 @@ const Todo = (props) => {
 
   return (
     <Box style={{textAlign: 'center',margin:'0.5rem auto'}}>
-      <Grid templateColumns='repeat(6, 1fr)'>
+      <Grid templateColumns='repeat(5, 1fr)'>
         <GridItem colSpan={1}>{statusBox}</GridItem>
         <GridItem colSpan={3}>
           <Menu>
@@ -70,14 +70,6 @@ const Todo = (props) => {
           </Menu>
         </GridItem>
         <GridItem colSpan={1}>{experience}</GridItem>
-        <GridItem colSpan={1}>
-          <Box as='button' bgColor={theme.colors.main} style={{...reportButtonStyle}} >
-            <BiCommentAdd style={{margin:'0 auto',transform:'scale(-1,1)'}} /> 
-            <Text style={{fontSize:'0.8rem'}} >
-              報告
-            </Text>
-          </Box>
-        </GridItem>
       </Grid>
 
     </Box>
