@@ -64,16 +64,23 @@ const Home = () => {
         <CardFooter
           justify='space-between'
           flexWrap='wrap'
-          sx={{
-            '& > button': {
-              minW: '136px',
-            },
-          }}
+          
         >
-          <Button onClick={onClickGood} flex='1' variant='ghost' leftIcon={active ? <AiFillLike color={theme.colors.sub} /> : <AiOutlineLike  />}>
+          <Button
+            onClick={onClickGood} 
+            flex='1' 
+            variant='ghost' 
+            leftIcon={active ? <AiFillLike color={theme.colors.sub} /> : <AiOutlineLike  />}
+            _hover={{bg: 'none'}}
+            >
             いいね
           </Button>
-          <Button onClick={() => navigate('/commentList/'+post.id)} flex='1' variant='ghost' leftIcon={<BiChat />}>
+          <Button 
+            onClick={() => navigate('/commentList/'+post.id)}
+            flex='1' 
+            variant='ghost' 
+            _hover={{bg: 'none'}}
+            leftIcon={<BiChat />}>
             コメント
           </Button>
         </CardFooter>
