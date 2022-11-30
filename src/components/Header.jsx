@@ -19,6 +19,7 @@ import {
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import theme from '../theme';
 import logo from '../assets/react.svg';//仮置き
+import experience2various from '../experience2various';
 
 
 const NavLink = ({ children }) => (
@@ -41,11 +42,16 @@ const headerStyle = {
   width:'100%'
 }
 
-const Header = () => {
+const Header = (props) => {
+  const userInfo=props.userInfo;
+  console.log('userInfo = '+JSON.stringify(userInfo));
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const experience = 10;  //仮置き
-  const userName = '名前名前'
+  //const experience = 10;  //仮置き
+  const userName = userInfo.user_id;
+  const {level, upto,avatar}=experience2various(userInfo.experience_point_num);
+  
+
   return (
     <>
       <Box bg={useColorModeValue(theme.colors.main, 'gray.900')} style={{...headerStyle}} pos='absolute' >
@@ -54,7 +60,7 @@ const Header = () => {
             <Box><img src={logo} /></Box>
             <Box>
               <Text pl={4} fontSize='2xl'>
-                Lv.{experience}
+                Lv.{level}
               </Text>
             </Box>
           </Box>

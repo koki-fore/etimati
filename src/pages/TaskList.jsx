@@ -56,7 +56,7 @@ const TaskList = () => {
   } 
   return (
     <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
-      <Header/>
+      <Header userInfo={userData} />
       <Grid templateColumns='repeat(5, 1fr)'>
         <GridItem colSpan={1}>達成</GridItem>
         <GridItem colSpan={3}>内容</GridItem>
