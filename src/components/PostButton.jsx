@@ -6,6 +6,7 @@ import theme from '../theme'
 import {
   BiCommentAdd
 } from 'react-icons/bi'
+import { useNavigate } from 'react-router-dom'
 
 
 const postButtonStyle = {
@@ -17,9 +18,9 @@ const postButtonStyle = {
 }
 
 const PostButton = () => {
-  
+  const navigate = useNavigate()
   return (
-    <Box as='button' bgColor={theme.colors.main} pos='absolute' style={{...postButtonStyle}} >
+    <Box as='button' _hover={{bg: theme.colors.sub}} onClick={() => navigate('/postPage')} bgColor={theme.colors.main} pos='absolute' style={{...postButtonStyle}} >
       <BiCommentAdd size={'1.6rem'} style={{margin:'0 auto',transform:'scale(-1,1)'}} /> 投稿
     </Box>
   )
