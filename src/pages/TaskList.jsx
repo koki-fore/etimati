@@ -1,5 +1,5 @@
 import { 
-  useLayoutEffect,
+  useEffect,
   useState,
 } from 'react'
 import {
@@ -37,7 +37,7 @@ const TaskList = () => {
   const todoContents = allChallenges;
   const [userData, setUserData] = useState();
   const [ChallengesList, setChallengesList] = useState();
-  useLayoutEffect(() => {
+  useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       console.log('user = '+user.uid)
       axios.get('http://localhost:8080/users/me/'+user.uid)
@@ -52,9 +52,17 @@ const TaskList = () => {
         console.log(err)
       })})
   },[])
-  if (!userData){
-    return null;
-  } 
+  if (!userData) return(
+    <Box textAlign='center'>
+      <Spinner
+        thickness='4px'
+        speed='0.65s'
+        emptyColor='gray.200'
+        color={theme.colors.main}
+        size='xl'
+      />
+    </Box>
+  ) 
   return (
     <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
       <Header userInfo={userData} />

@@ -50,7 +50,7 @@ const PostPage = () => {
   //達成したタスクを表示するためのchallengeId
   const [value, setValue] = useState('')
   const [ChallengesList, setChallengesList] = useState();
-  useLayoutEffect(() => {
+  useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       console.log('user = '+user.uid)
       axios.get('http://localhost:8080/users/me/'+user.uid)
@@ -72,9 +72,17 @@ const PostPage = () => {
     setValue(e)
     console.log('handleSelect'+e)
   }
-  if (!userData){
-    return null;
-  } 
+  if (!userData) return(
+    <Box textAlign='center'>
+      <Spinner
+        thickness='4px'
+        speed='0.65s'
+        emptyColor='gray.200'
+        color={theme.colors.main}
+        size='xl'
+      />
+    </Box>
+  ) 
   
   console.log('userData = '+JSON.stringify(userData))
   return (

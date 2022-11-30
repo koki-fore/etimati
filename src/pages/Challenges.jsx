@@ -2,13 +2,13 @@ import axios from "axios"
 import theme from '../theme';
 import { Box, Accordion, AccordionButton, AccordionItem, AccordionPanel, AccordionIcon, Tabs, TabList, Tab, TabPanels, TabPanel } from "@chakra-ui/react"
 import { CheckIcon } from "@chakra-ui/icons"
-import { useLayoutEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 const Challenges = () => {
 
     const [challenges, setChallenges] = useState()
 
-    useLayoutEffect(() => {
+    useEffect(() => {
 
         axios.get('http://localhost:8080/challenges/')
         .then((res) => {
@@ -20,7 +20,17 @@ const Challenges = () => {
         })
     },[])
 
-    if (!challenges) return null
+    if (!challenges) return(
+        <Box textAlign='center'>
+          <Spinner
+            thickness='4px'
+            speed='0.65s'
+            emptyColor='gray.200'
+            color={theme.colors.main}
+            size='xl'
+          />
+        </Box>
+    ) 
 
     return (
         <Tabs isFitted variant='enclosed'>
