@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react'
+import { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -19,7 +19,7 @@ const CommentList = () => {
   
   const {id} = useParams()
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     axios.get('http://localhost:8080/posts/' + id)
     .then((res) => {
       setPost(res.data)
@@ -53,7 +53,17 @@ const CommentList = () => {
     
   }
 
-  if (!post) return null
+  if (!post) return(
+    <Box textAlign='center'>
+      <Spinner
+        thickness='4px'
+        speed='0.65s'
+        emptyColor='gray.200'
+        color={theme.colors.main}
+        size='xl'
+      />
+    </Box>
+  ) 
 
   return (
     <Box style={{textAlign: 'center',paddingTop:'4rem'}}>

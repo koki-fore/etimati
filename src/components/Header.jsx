@@ -44,14 +44,14 @@ const headerStyle = {
   width:'100%'
 }
 
-const Header = (props) => {
-  const userInfo=props.userInfo;
-  console.log('userInfo = '+JSON.stringify(userInfo));
+const Header = () => {
+  // const userInfo=props.userInfo;
+  // console.log('userInfo = '+JSON.stringify(userInfo));
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  //const experience = 10;  //仮置き
-  const userName = userInfo.user_id;
-  const {level, upto,avatar}=experience2various(userInfo.experience_point_num);
+  const experience = 10;  //仮置き
+  // const userName = userInfo.user_id;
+  // const {level, upto,avatar}=experience2various(userInfo.experience_point_num);
   
 
   return (
@@ -62,7 +62,7 @@ const Header = (props) => {
             <Box><img src={logo} /></Box>
             <Box>
               <Text pl={4} fontSize='2xl'>
-                Lv.{level}
+                Lv.{experience}
               </Text>
             </Box>
           </Box>
@@ -93,7 +93,7 @@ const Header = (props) => {
                   </Center>
                   <br />
                   <Center>
-                    <p> {userName} </p>
+                    {/* <p> {userName} </p> */}ff
                   </Center>
                   <br />
                   <MenuDivider />

@@ -1,4 +1,5 @@
-import { useLayoutEffect, useState } from "react"
+import { useEffect, useState } from "react"
+import { Spinner } from '@chakra-ui/react'
 import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Heading, Image, Text, IconButton } from "@chakra-ui/react"
 import { AiFillLike, AiOutlineLike} from "react-icons/ai"
 import { BiChat } from "react-icons/bi"
@@ -21,7 +22,7 @@ const Home = () => {
     console.log(active)
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     axios.get('http://localhost:8080/posts/')
     .then((res) => {
       console.log(res.data)
@@ -31,7 +32,17 @@ const Home = () => {
       console.log(err)
     })
   },[])
-  // if (!posts) return null
+  if (!posts) return(
+    <Box textAlign='center'>
+      <Spinner
+        thickness='4px'
+        speed='0.65s'
+        emptyColor='gray.200'
+        color={theme.colors.main}
+        size='xl'
+      />
+    </Box>
+  ) 
   return (
     <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
     <Header/>
