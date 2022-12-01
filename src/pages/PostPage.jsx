@@ -88,7 +88,7 @@ const PostPage = () => {
   console.log('userData = '+JSON.stringify(userData))
   return (
     <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
-      <Header/>
+      <Header userInfo={userData}/>
       <Heading as='h3' size='lg' style={{margin:'0.7rem'}}>
         投稿メッセージ
       </Heading>
