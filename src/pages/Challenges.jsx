@@ -11,7 +11,7 @@ const Challenges = () => {
 
     useEffect(() => {
 
-        axios.get('http://localhost:8080/challenges/')
+        axios.get('http://localhost:8080/challenges')
         .then((res) => {
             console.log(res.data)
             setChallenges(res.data)

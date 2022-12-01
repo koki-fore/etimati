@@ -23,7 +23,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:8080/posts/')
+    axios.get('http://localhost:8080/posts')
     .then((res) => {
       console.log(res.data)
       setPosts(res.data.sort((a, b) => b.id - a.id))
@@ -45,7 +45,7 @@ const Home = () => {
   ) 
   return (
     <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
-    <Header/>
+    {/* <Header/> */}
     {posts?.map((post) => (
       <Card maxW='md'>
         <CardHeader>
