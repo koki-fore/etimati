@@ -1,6 +1,8 @@
 import { useAuthContext } from '../contexts/AuthContext';
-import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useState, useRef } from 'react';
+import { Button } from '@chakra-ui/react';
+import theme from '../theme';
 
 
 
@@ -23,11 +25,18 @@ const InputFile = () => {
   // 写真をアップロードする
   const upload = (event) => {
     event.preventDefault()
-
-    uploadBytes(palpalRef, file)
-    .then((testImage) => {
-    console.log('Uploaded a blob or file!',file)
-    })
+    if (file !== undefined) {
+      uploadBytes(palpalRef, file)
+      .then((testImage) => {
+        console.log('Uploaded a blob or file!',file)
+        
+        getDownloadURL(palpalRef, 'test/'+fileName)
+        .then((url) => {
+          // ここにaxiosを書く
+          console.log(url)
+        })
+      })
+    }
   }
 
   // 写真を画面上に置く
@@ -46,10 +55,15 @@ const InputFile = () => {
     inputRef.current.click();
   };
 
+  const cancel = () => {
+    setFile(undefined)
+    setFileName(undefined)
+  }
+
   return (
     <div>
       <form onSubmit={upload}>
-        <button onClick={clickFileUpload}>画像を選択する</button>
+        <Button bg={theme.colors.accent} color='white' onClick={clickFileUpload}>画像を選択する</Button>
           <input
             hidden
             ref={inputRef}
@@ -57,8 +71,10 @@ const InputFile = () => {
             accept="image/*"
             onChange={onFileInputChange}
           />
+          <div> {fileName} </div>
         <input type="submit" value='送信' />
       </form>
+      <Button bg={theme.colors.main} color='white' onClick={cancel} >取り消し</Button>
     </div>
   )
 }
