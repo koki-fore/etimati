@@ -70,10 +70,9 @@ function Mypage() {
       <Box style={{height:'40vh'}}>
         <Image src={palpal} alt='Avatar' style={{margin: '0 auto', border:'0px solid'}} boxSize={'100%'} />
       </Box>
-      <Box style={{width:'80%', margin:'0 auto'}} >
+      <Box style={{width:'75%', margin:'0 auto'}} >
         <CircularProgress value={totalExperience%perLevelup} max={perLevelup} color={theme.colors.main} size={'100%'} >
           <CircularProgressLabel>
-          <Text fontSize='4xl'>Lv.{level}</Text>
             <Text style={{padding:'0.4rem'}} fontSize='2xl' >
               総経験値 : {totalExperience%perLevelup},<br/>
               あと : {perLevelup-(totalExperience%perLevelup)}
