@@ -42,7 +42,7 @@ const CommentList = () => {
   const handleSubmit = (event) => {
     event.preventDefault()
     axios.post('http://localhost:8080/comments/', {
-      user_FK: res.data.id,
+      user_FK: userData.id,
       post_FK: post.id,
       text: postComment
     })
