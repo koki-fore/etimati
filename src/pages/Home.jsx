@@ -45,7 +45,7 @@ const Home = () => {
   ) 
   return (
     <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
-    <Header/>
+    <Header userInfo={userData}/>
     {posts?.map((post) => (
       <Card maxW='md'>
         <CardHeader>
