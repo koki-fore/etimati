@@ -16,7 +16,6 @@ import reactLogo from '../assets/react.svg'
 import '../App.css'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import PostButton from '../components/PostButton';
 import theme from '../theme';
 import palpal from '../assets/palpal_bg_p0.png';
 import { Spinner } from '@chakra-ui/react';
@@ -82,7 +81,6 @@ function Mypage() {
           </CircularProgressLabel>
         </CircularProgress>
       </Box>
-      <PostButton/>
       <Footer/>
     </Box>
   )
