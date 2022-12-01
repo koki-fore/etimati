@@ -8,18 +8,6 @@ import {
     Textarea,
     Heading,
     Button,
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
-    PopoverHeader,
-    PopoverBody,
-    PopoverFooter,
-    PopoverArrow,
-    PopoverCloseButton,
-    PopoverAnchor,
-    Radio, 
-    RadioGroup,
-    Stack,
     Select
 } from '@chakra-ui/react';
 import { Image } from '@chakra-ui/react'
@@ -39,13 +27,7 @@ import { Spinner } from '@chakra-ui/react'
 
 
 const PostPage = () => {
-  const avatar=reactLogo;
-  const name='名前';
-  const level=1;
-  const totalExperience=10;
   const todoContents = allChallenges;
-  //firebaseのuser情報
-  //const { user } = useAuthContext();
   //BDのuser情報
   const [userData, setUserData] = useState()
   //達成したタスクを表示するためのchallengeId
@@ -88,7 +70,7 @@ const PostPage = () => {
   console.log('userData = '+JSON.stringify(userData))
   return (
     <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
-      <Header userInfo={userData}/>
+      <Header userInfo={userData} />
       <Heading as='h3' size='lg' style={{margin:'0.7rem'}}>
         投稿メッセージ
       </Heading>
@@ -96,7 +78,7 @@ const PostPage = () => {
       <Heading as='h3' size='lg' style={{margin:'0.7rem'}}>
         達成タスク
       </Heading>
-        <Select placeholder='達成したチャレンジを選択してください' value={value} onChange={handleSelect}>
+        <Select placeholder='達成したチャレンジを選択してください' value={value} onChange={(event) => handleSelect(event.target.value)}>
             {ChallengesList.map(challenge => (
               <option value={challenge.id} key={challenge.id} >{challenge.title}</option>
             ))}
@@ -105,7 +87,7 @@ const PostPage = () => {
         選択しているタスク{value}
       </Heading>
       <Box style={{margin:'0.7rem'}}>
-        <Button onClick={handleSubmit} >送信</Button>
+        <Button onClick={(event) => handleSubmit(event.target.value)} >送信</Button>
       </Box>
       
       <Footer/>
