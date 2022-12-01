@@ -9,12 +9,14 @@ import theme from '../theme';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useNavigate } from "react-router-dom";
-import palpal from '../assets/palpal_1.png'
+import palpal from '../assets/palpal_1.png';
+import {onAuthStateChanged} from 'firebase/auth';
+import { auth } from '../firebaseEnv';
 
 const Home = () => {
   const [posts, setPosts] = useState()
   const [active, setActive] = useState(false)
-
+  const [userData, setUserData] = useState()
   const navigate = useNavigate()
 
   const onClickGood = () => {
@@ -31,8 +33,19 @@ const Home = () => {
     .catch((err) => {
       console.log(err)
     })
+    onAuthStateChanged(auth, (user) => {
+      console.log('user = '+user.uid)
+      axios.get('http://localhost:8080/users/me/'+user.uid)
+      .then((res) => {
+        console.log('userdata = '+JSON.stringify(res.data))
+        console.log('challenge_completed = '+JSON.stringify(res.data.challenge_completed))
+        setUserData(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })})
   },[])
-  if (!posts) return(
+  if (!userData) return(
     <Box textAlign='center'>
       <Spinner
         thickness='4px'
