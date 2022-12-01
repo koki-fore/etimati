@@ -30,8 +30,10 @@ const PostPage = () => {
   const todoContents = allChallenges;
   //BDのuser情報
   const [userData, setUserData] = useState()
+  //textareaの情報
+  const [text, setText] = useState()
   //達成したタスクを表示するためのchallengeId
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState()
   const [ChallengesList, setChallengesList] = useState();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -48,12 +50,24 @@ const PostPage = () => {
       })})
   },[])
   const handleSubmit = (event) => {
-    event.preventDefault()
-    
-  }
-  const handleSelect = (e) => {
-    setValue(e)
-    console.log('handleSelect'+e)
+    event.preventDefault();
+    //console.log('cF= '+value);
+    axios.post('http://localhost:8080/posts',{
+      user_FK:userData.id,
+      challenge_FK:value,
+      text:text,
+      picture_path_01:null,
+      picture_path_02:null,
+      picture_path_03:null,
+      picture_path_04:null
+    })
+    .then((res)=>{
+      console.log(res);
+      window.location.reload()
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
   }
   if (!userData) return(
     <Box textAlign='center'>
@@ -71,25 +85,24 @@ const PostPage = () => {
   return (
     <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
       <Header userInfo={userData} />
-      <Heading as='h3' size='lg' style={{margin:'0.7rem'}}>
-        投稿メッセージ
-      </Heading>
-      <Textarea resize={'none'} style={{height:'30vh',width:'80vw'}} />
-      <Heading as='h3' size='lg' style={{margin:'0.7rem'}}>
-        達成タスク
-      </Heading>
-        <Select placeholder='達成したチャレンジを選択してください' value={value} onChange={(event) => handleSelect(event.target.value)}>
+      <form onSubmit={handleSubmit} >
+        <Heading as='h3' size='lg' style={{margin:'0.7rem'}}>
+          投稿メッセージ
+        </Heading>
+        <Textarea placeholder="コメントを記入" resize={'none'} style={{height:'30vh',width:'80vw'}} value={text} onChange={(event) => setText(event.target.value)}/>
+        <Heading as='h3' size='lg' style={{margin:'0.7rem'}}>
+          達成タスク
+        </Heading>
+          <Select value={value} onChange={(event) => setValue(event.target.value)}>
+            <option value={null} key={null} >なし</option>
             {ChallengesList.map(challenge => (
               <option value={challenge.id} key={challenge.id} >{challenge.title}</option>
             ))}
-        </Select>
-      <Heading as='h4' size='md' style={{margin:'0.7rem'}}>
-        選択しているタスク{value}
-      </Heading>
-      <Box style={{margin:'0.7rem'}}>
-        <Button onClick={(event) => handleSubmit(event.target.value)} >送信</Button>
-      </Box>
-      
+          </Select>
+        <Box style={{margin:'0.7rem'}}>
+          <Button type='submit'  bg={theme.colors.main} color={'white'} _hover={{bg: theme.colors.sub}}>送信</Button>
+        </Box>
+      </form>
       <Footer/>
     </Box>
   )

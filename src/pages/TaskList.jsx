@@ -15,7 +15,6 @@ import reactLogo from '../assets/react.svg'
 import '../App.css'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import PostButton from '../components/PostButton';
 import theme from '../theme';
 import Todo from '../components/Todo';
 import allChallenges from '../assets/challenges.json';
@@ -86,7 +85,6 @@ const TaskList = () => {
             experience={todo.experience_point} />
         );
       })}
-      <PostButton/>
       <Footer/>
     </Box>
   )
