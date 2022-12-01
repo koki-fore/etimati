@@ -15,8 +15,9 @@ const CommentList = () => {
 
   const { user } = useAuthContext();
 
-  const [post, setPost] = useState()
-  const [postComment, setPostComment] = useState()
+  const [post, setPost] = useState();
+  const [postComment, setPostComment] = useState();
+  const [userData, setUserData] = useState();
   
   const {id} = useParams()
 
@@ -28,30 +29,30 @@ const CommentList = () => {
     .catch((err) => {
       console.log(err)
     })
-  }, [])
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
     axios.get('http://localhost:8080/users/me/'+user.uid)
     .then((res) => {
       console.log(res.data)
-      axios.post('http://localhost:8080/comments/', {
-        user_FK: res.data.id,
-        post_FK: post.id,
-        text: postComment
-      })
-      .then((res)=>{
-        console.log(res)
-        window.location.reload()
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      setUserData(res.data)
     })
     .catch((err) => {
       console.log(err)
     })
-    
+  }, [])
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    axios.post('http://localhost:8080/comments/', {
+      user_FK: userData.id,
+      post_FK: post.id,
+      text: postComment
+    })
+    .then((res)=>{
+      console.log(res)
+      window.location.reload()
+    })
+    .catch((err) => {
+      console.log(err)
+    })
   }
 
   if (!post) return(
