@@ -1,7 +1,7 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import {BrowserRouter, Routes, Route, Link} from "react-router-dom"
-import { AuthProvider } from './contexts/AuthContext'
-import PrivateRoutes from './utils/PrivateRoutes'
+// import { AuthProvider } from './contexts/AuthContext'
+// import PrivateRoutes from './utils/PrivateRoutes'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
 import UserRegister from './pages/UserRegister'
@@ -18,24 +18,24 @@ const App = () => {
   return (
         <BrowserRouter>
         <ChakraProvider>
-        <AuthProvider>
+        {/* <AuthProvider> */}
           <Routes>
             <Route path='/SignUp' element={<SignUp />} />
             <Route path='/Login' element={<Login />} />
             <Route path='/*' element={<NotFound />} />
             
-            <Route element={<PrivateRoutes/>}>
-              <Route path='/UserRegister' element={<UserRegister />} />
-              <Route path='/Challenges' element={<Challenges/>} />
-              <Route path='/Mypage' element={<Mypage />} />
-              <Route path='/' element={<Home />} />
-              <Route path='/TaskList' element={<TaskList />} />
-              <Route path='/PostPage' element={<PostPage/>} />
-              <Route path='/CommentList/:id' element={<CommentList />} />
-            </Route>
+            {/* <Route element={<PrivateRoutes/>}> */}
+            <Route path='/UserRegister' element={<UserRegister />} />
+            <Route path='/Challenges' element={<Challenges/>} />
+            <Route path='/Mypage' element={<Mypage />} />
+            <Route path='/' element={<Home />} />
+            <Route path='/TaskList' element={<TaskList />} />
+            <Route path='/PostPage' element={<PostPage/>} />
+            <Route path='/CommentList/:id' element={<CommentList />} />
+            {/* </Route> */}
             
           </Routes>
-        </AuthProvider>
+        {/* </AuthProvider> */}
         </ChakraProvider>
         </BrowserRouter>
       )
