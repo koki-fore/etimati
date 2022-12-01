@@ -8,18 +8,6 @@ import {
     Textarea,
     Heading,
     Button,
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
-    PopoverHeader,
-    PopoverBody,
-    PopoverFooter,
-    PopoverArrow,
-    PopoverCloseButton,
-    PopoverAnchor,
-    Radio, 
-    RadioGroup,
-    Stack,
     Select
 } from '@chakra-ui/react';
 import { Image } from '@chakra-ui/react'
@@ -32,24 +20,20 @@ import theme from '../theme'
 import axios from 'axios';
 import { useAuthContext } from '../contexts/AuthContext';
 import {onAuthStateChanged} from 'firebase/auth';
-import auth from '../firebaseEnv'
+import { auth } from '../firebaseEnv'
 import allChallenges from '../assets/challenges.json';
 import MakeListOfAccomplishments from '../MakeListOfAccomplishments';
 import { Spinner } from '@chakra-ui/react'
 
 
 const PostPage = () => {
-  const avatar=reactLogo;
-  const name='名前';
-  const level=1;
-  const totalExperience=10;
   const todoContents = allChallenges;
-  //firebaseのuser情報
-  //const { user } = useAuthContext();
   //BDのuser情報
   const [userData, setUserData] = useState()
+  //textareaの情報
+  const [text, setText] = useState()
   //達成したタスクを表示するためのchallengeId
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState()
   const [ChallengesList, setChallengesList] = useState();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -66,12 +50,24 @@ const PostPage = () => {
       })})
   },[])
   const handleSubmit = (event) => {
-    event.preventDefault()
-    
-  }
-  const handleSelect = (e) => {
-    setValue(e)
-    console.log('handleSelect'+e)
+    event.preventDefault();
+    //console.log('cF= '+value);
+    axios.post('http://localhost:8080/posts',{
+      user_FK:userData.id,
+      challenge_FK:value,
+      text:text,
+      picture_path_01:null,
+      picture_path_02:null,
+      picture_path_03:null,
+      picture_path_04:null
+    })
+    .then((res)=>{
+      console.log(res);
+      window.location.reload()
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
   }
   if (!userData) return(
     <Box textAlign='center'>
@@ -88,26 +84,25 @@ const PostPage = () => {
   console.log('userData = '+JSON.stringify(userData))
   return (
     <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
-      <Header/>
-      <Heading as='h3' size='lg' style={{margin:'0.7rem'}}>
-        投稿メッセージ
-      </Heading>
-      <Textarea resize={'none'} style={{height:'30vh',width:'80vw'}} />
-      <Heading as='h3' size='lg' style={{margin:'0.7rem'}}>
-        達成タスク
-      </Heading>
-        <Select placeholder='達成したチャレンジを選択してください' value={value} onChange={handleSelect}>
+      <Header userInfo={userData} />
+      <form onSubmit={handleSubmit} >
+        <Heading as='h3' size='lg' style={{margin:'0.7rem'}}>
+          投稿メッセージ
+        </Heading>
+        <Textarea placeholder="コメントを記入" resize={'none'} style={{height:'30vh',width:'80vw'}} value={text} onChange={(event) => setText(event.target.value)}/>
+        <Heading as='h3' size='lg' style={{margin:'0.7rem'}}>
+          達成タスク
+        </Heading>
+          <Select value={value} onChange={(event) => setValue(event.target.value)}>
+            <option value={null} key={null} >なし</option>
             {ChallengesList.map(challenge => (
               <option value={challenge.id} key={challenge.id} >{challenge.title}</option>
             ))}
-        </Select>
-      <Heading as='h4' size='md' style={{margin:'0.7rem'}}>
-        選択しているタスク{value}
-      </Heading>
-      <Box style={{margin:'0.7rem'}}>
-        <Button onClick={handleSubmit} >送信</Button>
-      </Box>
-      
+          </Select>
+        <Box style={{margin:'0.7rem'}}>
+          <Button type='submit'  bg={theme.colors.main} color={'white'} _hover={{bg: theme.colors.sub}}>送信</Button>
+        </Box>
+      </form>
       <Footer/>
     </Box>
   )

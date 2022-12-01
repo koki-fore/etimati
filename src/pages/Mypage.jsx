@@ -16,13 +16,13 @@ import reactLogo from '../assets/react.svg'
 import '../App.css'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import PostButton from '../components/PostButton';
 import theme from '../theme';
 import palpal from '../assets/palpal_bg_p0.png';
 import { Spinner } from '@chakra-ui/react';
 import {onAuthStateChanged} from 'firebase/auth';
-import auth from '../firebaseEnv';
+import { auth } from '../firebaseEnv';
 import axios from 'axios';
+import experience2various from '../experience2various';
 
 
 const perLevelup=20;
@@ -31,11 +31,9 @@ const avatarStyle = {
 }
 
 function Mypage() {
-  const avatar=reactLogo;
-  const name='名前';
-  const level=1;
-  const totalExperience=10;
   const [userData, setUserData] = useState();
+  const [totalExperience, setTotalExperience] = useState();
+  const [upto, setUpto] = useState();
   /*バーの使えそうな色
   "blackAlpha" | "gray" |"orange"|  "linkedin"  | "twitter" 
   */
@@ -47,6 +45,9 @@ function Mypage() {
         console.log('userdata = '+JSON.stringify(res.data))
         console.log('challenge_completed = '+JSON.stringify(res.data.challenge_completed))
         setUserData(res.data)
+        const {level, upto,avatar}=experience2various(res.data.experience_point_num);
+        setUpto(upto)
+        setTotalExperience(res.data.experience_point_num);
       })
       .catch((err) => {
         console.log(err)
@@ -71,16 +72,15 @@ function Mypage() {
         <Image src={palpal} alt='Avatar' style={{margin: '0 auto', border:'0px solid'}} boxSize={'100%'} />
       </Box>
       <Box style={{width:'75%', margin:'0 auto'}} >
-        <CircularProgress value={totalExperience%perLevelup} max={perLevelup} color={theme.colors.main} size={'100%'} >
+        <CircularProgress value={userData.experience_point_num} max={perLevelup} color={theme.colors.main} size={'100%'} >
           <CircularProgressLabel>
             <Text style={{padding:'0.4rem'}} fontSize='2xl' >
-              総経験値 : {totalExperience%perLevelup},<br/>
-              あと : {perLevelup-(totalExperience%perLevelup)}
+              総経験値 : {totalExperience},<br/>
+              あと : {upto}
             </Text>
           </CircularProgressLabel>
         </CircularProgress>
       </Box>
-      <PostButton/>
       <Footer/>
     </Box>
   )

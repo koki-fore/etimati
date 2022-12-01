@@ -18,7 +18,7 @@ import {
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react'
 import { signInWithEmailAndPassword } from "firebase/auth";
-import auth from "../firebaseEnv";
+import { auth } from "../firebaseEnv";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
 import SignHeader from "../components/SignHeader";
