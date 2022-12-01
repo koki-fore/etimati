@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import auth from "../firebaseEnv";
+import { auth } from "../firebaseEnv";
 import SignHeader from "../components/SignHeader";
 import theme from "../theme";
 

@@ -21,7 +21,7 @@ import Todo from '../components/Todo';
 import allChallenges from '../assets/challenges.json';
 import MakeListOfAccomplishments from '../MakeListOfAccomplishments';
 import {onAuthStateChanged} from 'firebase/auth';
-import auth from '../firebaseEnv';
+import { auth } from '../firebaseEnv';
 import axios from 'axios';
 import { Spinner } from '@chakra-ui/react'
 

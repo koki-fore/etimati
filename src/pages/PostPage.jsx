@@ -32,7 +32,7 @@ import theme from '../theme'
 import axios from 'axios';
 import { useAuthContext } from '../contexts/AuthContext';
 import {onAuthStateChanged} from 'firebase/auth';
-import auth from '../firebaseEnv'
+import { auth } from '../firebaseEnv'
 import allChallenges from '../assets/challenges.json';
 import MakeListOfAccomplishments from '../MakeListOfAccomplishments';
 import { Spinner } from '@chakra-ui/react'
