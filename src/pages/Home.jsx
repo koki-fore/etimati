@@ -114,4 +114,5 @@ const Home = () => {
   </Box>
   )
 }
+
 export default Home;
