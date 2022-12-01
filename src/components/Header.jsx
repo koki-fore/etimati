@@ -41,28 +41,29 @@ const NavLink = ({ children }) => (
 const headerStyle = {
   top:'0',
   left:'0',
-  width:'100%'
+  width:'100%',
+  height: '65px'
 }
 
 const Header = (props) => {
-  const userInfo=props.userInfo;
-  console.log('userInfo = '+JSON.stringify(userInfo));
+  // const userInfo=props.userInfo;
+  // console.log('userInfo = '+JSON.stringify(userInfo));
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  //const experience = 10;  //仮置き
-  const userName = userInfo.user_id;
-  const {level, upto,avatar}=experience2various(userInfo.experience_point_num);
+  const experience = 10;  //仮置き
+  // const userName = userInfo.user_id;
+  // const {level, upto,avatar}=experience2various(userInfo.experience_point_num);
   
 
   return (
     <>
-      <Box bg={useColorModeValue(theme.colors.main, 'gray.900')} style={{...headerStyle}} pos='absolute' >
+      <Box bg={theme.colors.main} style={{...headerStyle}} pos='fixed' >
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'} pl={4} >
           <Box style={{display:'flex'}}>
             <Box><img src={logo} /></Box>
             <Box>
               <Text pl={4} fontSize='2xl'>
-                Lv.{level}
+                Lv.{experience}
               </Text>
             </Box>
           </Box>
@@ -93,7 +94,7 @@ const Header = (props) => {
                   </Center>
                   <br />
                   <Center>
-                    <p> {userName} </p>
+                    <p>  </p>
                   </Center>
                   <br />
                   <MenuDivider />
