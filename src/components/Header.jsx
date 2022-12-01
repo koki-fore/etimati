@@ -57,7 +57,7 @@ const Header = (props) => {
 
   return (
     <>
-      <Box bg={theme.colors.main} style={{...headerStyle}} pos='fixed' >
+      <Box bg={theme.colors.main} style={{...headerStyle}} zIndex={600} pos='fixed' >
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'} pl={4} >
           <Box style={{display:'flex'}}>
             <Box><img src={logo} /></Box>
