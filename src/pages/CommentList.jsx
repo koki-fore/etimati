@@ -5,15 +5,15 @@ import { useParams } from 'react-router-dom'
 import theme from '../theme'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import { auth } from '../firebaseEnv';
+import {onAuthStateChanged} from 'firebase/auth';
 import { AiFillLike, AiOutlineLike} from "react-icons/ai"
 import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Heading, Image, Text, IconButton, Textarea, Spacer, Stack, HStack } from "@chakra-ui/react"
-import { useAuthContext } from "../contexts/AuthContext";
+// import { useAuthContext } from "../contexts/AuthContext";
 import palpal from '../assets/palpal_1.png'
 import { Spinner } from '@chakra-ui/react'
 
 const CommentList = () => {
-
-  const { user } = useAuthContext();
 
   const [post, setPost] = useState();
   const [postComment, setPostComment] = useState();
@@ -29,13 +29,17 @@ const CommentList = () => {
     .catch((err) => {
       console.log(err)
     })
-    axios.get('http://localhost:8080/users/me/'+user.uid)
-    .then((res) => {
-      console.log(res.data)
-      setUserData(res.data)
-    })
-    .catch((err) => {
-      console.log(err)
+    onAuthStateChanged(auth, (user) => {
+      console.log('user = '+user.uid)
+      axios.get('http://localhost:8080/users/me/'+user.uid)
+      .then((res) => {
+        // console.log('userdata = '+JSON.stringify(res.data))
+        // console.log('challenge_completed = '+JSON.stringify(res.data.challenge_completed))
+        setUserData(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     })
   }, [])
 
@@ -55,7 +59,7 @@ const CommentList = () => {
     })
   }
 
-  if (!post) return(
+  if (!post || !userData) return(
     <Box textAlign='center'>
       <Spinner
         thickness='4px'
@@ -68,8 +72,8 @@ const CommentList = () => {
   ) 
 
   return (
-    <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
-      <Header/>
+    <Box style={{textAlign: 'center',paddingTop:'4rem', paddingBottom: '4rem'}}>
+      <Header userInfo={userData}/>
       <Card maxW='md'>
         <CardHeader>
           <Flex spacing='1'>
@@ -129,7 +133,7 @@ const CommentList = () => {
               </Flex>
               <Text>{comment.created_at}</Text>
             </Flex>
-            <Text>{comment.text}</Text>
+            <Text textAlign='left'>{comment.text}</Text>
           </Stack>
         </CardHeader>
       </Card>

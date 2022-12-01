@@ -42,8 +42,8 @@ function Mypage() {
       console.log('user = '+user.uid)
       axios.get('http://localhost:8080/users/me/'+user.uid)
       .then((res) => {
-        console.log('userdata = '+JSON.stringify(res.data))
-        console.log('challenge_completed = '+JSON.stringify(res.data.challenge_completed))
+        // console.log('userdata = '+JSON.stringify(res.data))
+        // console.log('challenge_completed = '+JSON.stringify(res.data.challenge_completed))
         setUserData(res.data)
         const {level, upto,avatar}=experience2various(res.data.experience_point_num);
         setUpto(upto)

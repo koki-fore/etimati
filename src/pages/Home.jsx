@@ -45,7 +45,7 @@ const Home = () => {
         console.log(err)
       })})
   },[])
-  if (!userData) return(
+  if (!userData || !posts) return(
     <Box textAlign='center'>
       <Spinner
         thickness='4px'
