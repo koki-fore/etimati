@@ -36,7 +36,7 @@ const Login = () => {
   // ログイン状態かどうかを判定するイベントを発動する
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      console.log('user = '+user.uid)
+      //console.log('user = '+user.uid)
       // ログインしている場合、ホームへリダイレクト
       if (user) {
         navigate('/')
