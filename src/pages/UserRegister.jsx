@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { 
+  useState,
+  useEffect
+} from "react";
 
 import {
   Flex,
@@ -23,21 +26,28 @@ import { useAuthContext } from '../contexts/AuthContext';
 import { useNavigate } from "react-router-dom";
 import SignHeader from "../components/SignHeader";
 import theme from "../theme";
+import {onAuthStateChanged} from 'firebase/auth';
+import { auth } from '../firebaseEnv';
 
 const UserRegister = () => {
   const [screenName, setScreenName] = useState()
   const [userID, setUserID] = useState()
   const [alreadyUserError, setAlreadyUserError] = useState(false);
   const [description, setDescription] = useState()
-
+  const [uID,setUID] = useState()
   const navigate = useNavigate()
 
-  const { user } = useAuthContext();
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      console.log('user = '+user.uid)
+      setUID(user.uid)
+    })
+  },[]) 
 
   const handleSubmit = (event) => {
     event.preventDefault()
     axios.post('http://localhost:8080/users/', {
-      firebase_FK: user.uid,
+      firebase_FK: uID,
       user_id: userID,
       screen_name: screenName,
       first_name: 'string',
