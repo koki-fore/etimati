@@ -91,7 +91,7 @@ const PostPage = () => {
         </Heading>
         <Textarea placeholder="コメントを記入" resize={'none'} style={{height:'30vh',width:'80vw'}} value={text} onChange={(event) => setText(event.target.value)}/>
         <Heading as='h3' size='lg' style={{margin:'0.7rem'}}>
-          達成タスク
+          チャレンジ
         </Heading>
           <Select value={value} onChange={(event) => setValue(event.target.value)}>
             <option value={null} key={null} >なし</option>
