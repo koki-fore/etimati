@@ -1,9 +1,10 @@
 /*
   status:statusを追加
   only:達成したもののみ
+  notAchieved:未達成のもののみ
 */
 function MakeListOfAccomplishments(all, achievements,str){
-
+  let json=[];
   switch (str){
     case 'status':
       let tureFalse = new Array(all.length).fill(false);
@@ -15,7 +16,6 @@ function MakeListOfAccomplishments(all, achievements,str){
       }
       return all;
     case 'only':
-      let json=[];
       for(let i=0;i<achievements.length;i++){
         json.push({
           title: all[Number(achievements[i].challenge_FK-1)].title,
@@ -24,10 +24,37 @@ function MakeListOfAccomplishments(all, achievements,str){
           id: all[achievements[i].challenge_FK-1].id
         })
       }
-      console.log(json)
+      return json
+    case 'notAchieved':
+      let j=0
+      let i=0
+      if(achievements.length==0){
+       return all; 
+      }
+      for(i=0;i<all.length;i++){
+        if(all[i].id!=achievements[j].id){
+          json.push({
+            title: all[i].title,
+            text: all[i].text,
+            experience_point: all[i].experience_point,
+            id: all[i].id
+          })
+        }else{
+          j++;
+        }
+        if(j==achievements.length){
+          break;
+        }
+      }
+      for(k=i;i<all.length;k++){
+        json.push({
+          title: all[j].title,
+          text: all[j].text,
+          experience_point: all[j].experience_point,
+          id: all[j].id
+        })
+      }
       return json;
-
-
   }
 }
 
