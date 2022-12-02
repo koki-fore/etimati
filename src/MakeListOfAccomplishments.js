@@ -46,12 +46,12 @@ function MakeListOfAccomplishments(all, achievements,str){
           break;
         }
       }
-      for(k=i;i<all.length;k++){
+      for(let k=i;k<all.length;k++){
         json.push({
-          title: all[j].title,
-          text: all[j].text,
-          experience_point: all[j].experience_point,
-          id: all[j].id
+          title: all[k].title,
+          text: all[k].text,
+          experience_point: all[k].experience_point,
+          id: all[k].id
         })
       }
       return json;
