@@ -25,15 +25,11 @@ import axios from 'axios';
 import { Spinner } from '@chakra-ui/react'
 
 
-const perLevelup=20;
 const avatarStyle = {
 
 }
 
 const TaskList = () => {
-  const name='名前';
-  const level=1;
-  const totalExperience=10;
   const todoContents = allChallenges;
   const [userData, setUserData] = useState();
   const [ChallengesList, setChallengesList] = useState();
@@ -66,14 +62,13 @@ const TaskList = () => {
   return (
     <Box style={{textAlign: 'center',paddingTop:'4rem'}}>
       <Header userInfo={userData} />
-      <Grid templateColumns='repeat(42, 1fr)'>
-        <GridItem colSpan={1}></GridItem>
-        <GridItem colSpan={8}>
-          <Heading as='h4' size='md'>達成</Heading>
+      <Grid templateColumns='repeat(31, 1fr)'>
+        <GridItem colSpan={2}></GridItem>
+        <GridItem colSpan={5}>
+          <Heading as='h4' size='md'>経験値</Heading>
           </GridItem>
         <GridItem colSpan={24}><Heading as='h4' size='md'>内容</Heading></GridItem>
-        <GridItem colSpan={8}><Heading as='h4' size='md'>経験値</Heading></GridItem>
-        <GridItem colSpan={1}></GridItem>
+
       </Grid>
       {ChallengesList.map((todo) => {
         return (

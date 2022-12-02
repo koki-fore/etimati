@@ -43,7 +43,7 @@ const PostPage = () => {
         console.log('userdata = '+JSON.stringify(res.data))
         console.log('challenge_completed = '+JSON.stringify(res.data.challenge_completed))
         setUserData(res.data)
-        setChallengesList(MakeListOfAccomplishments(todoContents,res.data.challenge_completed,'only'));
+        setChallengesList(MakeListOfAccomplishments(todoContents,res.data.challenge_completed,'notAchieved'));
       })
       .catch((err) => {
         console.log(err)
@@ -95,7 +95,7 @@ const PostPage = () => {
         </Heading>
           <Select value={value} onChange={(event) => setValue(event.target.value)}>
             <option value={null} key={null} >なし</option>
-            {ChallengesList.map(challenge => (
+            {ChallengesList?.map(challenge => (
               <option value={challenge.id} key={challenge.id} >{challenge.title}</option>
             ))}
           </Select>

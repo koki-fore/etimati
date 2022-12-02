@@ -20,7 +20,7 @@ import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { Image } from '@chakra-ui/react'
 import theme from '../theme';
 import logo from '../assets/logo.jpg';
-import experience2various from '../experience2various';
+import {experience2various} from '../experience2various';
 import SignOutButton from './SignOutButton';
 import palpal from '../assets/palpal_1.png';
 
