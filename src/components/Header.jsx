@@ -17,11 +17,12 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { Image } from '@chakra-ui/react'
 import theme from '../theme';
-import logo from '../assets/react.svg';//仮置き
+import logo from '../assets/logo.jpg';
 import experience2various from '../experience2various';
 import SignOutButton from './SignOutButton';
-import palpal from '../assets/palpal_1.png'
+import palpal from '../assets/palpal_1.png';
 
 
 const NavLink = ({ children }) => (
@@ -60,7 +61,9 @@ const Header = (props) => {
       <Box bg={theme.colors.main} style={{...headerStyle}} zIndex={600} pos='fixed' >
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'} pl={4} >
           <Box style={{display:'flex'}}>
-            <Box><img src={logo} /></Box>
+            <Box>
+              <Image src={logo} alt='Logo' style={{height:'30px',margin:'auto 0'}} ></Image>
+            </Box>
             <Box>
               <Text pl={4} fontSize='2xl'>
                 Lv.{level}
