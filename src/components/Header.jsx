@@ -16,27 +16,14 @@ import {
   Center,
   Text,
 } from '@chakra-ui/react';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+// import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import theme from '../theme';
 import logo from '../assets/react.svg';//仮置き
 import experience2various from '../experience2various';
 import SignOutButton from './SignOutButton';
 import palpal from '../assets/palpal_1.png'
+import { useEffect, useState } from 'react';
 
-
-const NavLink = ({ children }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue(theme.colors.main, 'gray.700'),
-    }}
-    href={'#'}>
-    {children}
-  </Link>
-);
 
 const headerStyle = {
   top:'0',
@@ -46,13 +33,10 @@ const headerStyle = {
 }
 
 const Header = (props) => {
-  const userInfo=props.userInfo;
-  console.log('userInfo = '+JSON.stringify(userInfo));
-  const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // console.log('userInfo = '+JSON.stringify(userInfo));
   // const experience = 10;  //仮置き
-  const userName = userInfo.user_id;
-  const {level, upto,avatar}=experience2various(userInfo.experience_point_num);
+  const userName = props.userInfo.user_id;
+  const {level, upto,avatar}=experience2various(props.userInfo.experience_point_num);
   
 
   return (
