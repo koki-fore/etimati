@@ -23,24 +23,25 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
 import SignHeader from "../components/SignHeader";
 import theme from "../theme";
+import {onAuthStateChanged} from 'firebase/auth';
 
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const { user } = useAuthContext();
   const navigate = useNavigate();
   
   // ログイン状態かどうかを判定するイベントを発動する
   useEffect(() => {
-    // ログインしている場合、ホームへリダイレクト
-    if (user) {
-      navigate('/')
-    }
+    onAuthStateChanged(auth, (user) => {
+      //console.log('user = '+user.uid)
+      // ログインしている場合、ホームへリダイレクト
+      if (user) {
+        navigate('/')
+      }
+      })
   }, []);
 
   const handleSubmit = (event) => {

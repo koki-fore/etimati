@@ -22,8 +22,6 @@ import {
 } from 'react-icons/bi'
 
 
-
-const perLevelup=20;
 const avatarStyle = {
 
 }
@@ -37,9 +35,6 @@ const reportButtonStyle = {
 
 const Todo = (props) => {
   const avatar=reactLogo;
-  const name='名前';
-  const level=1;
-  const totalExperience=10;
   const {key, status,content,contentReason,experience}= props;
 
   /*バーの使えそうな色
@@ -49,15 +44,15 @@ const Todo = (props) => {
   let statusBox;
   if(status){
     statusBox = <Box style={{border:'2px double red',width:'2rem',height:'2rem',margin:'6px auto',borderRadius:'2rem',padding:'auto',color:'red',transform:'rotate(-0.05turn)'}}>済</Box>
-  } else {
-    statusBox = <Box style={{border:'2px solid #000000',width:'1.6rem',height:'1.6rem',margin:'6px auto'}}>&emsp;</Box>
+  }else{
+    statusBox = <Box style={{width:'2rem',height:'2rem',margin:'6px auto',padding:'auto'}}>{experience}</Box>
   }
 
   return (
     <Box style={{textAlign: 'center',margin:'0.5rem auto'}}>
-      <Grid templateColumns='repeat(5, 1fr)'>
-        <GridItem colSpan={1}>{statusBox}</GridItem>
-        <GridItem colSpan={3}>
+      <Grid templateColumns='repeat(12, 1fr)'>
+        <GridItem colSpan={3}>{statusBox}</GridItem>
+        <GridItem colSpan={9}>
           <Menu>
             <MenuButton as={Button} >
               {content}
@@ -69,7 +64,6 @@ const Todo = (props) => {
             </MenuList>
           </Menu>
         </GridItem>
-        <GridItem colSpan={1}>{experience}</GridItem>
       </Grid>
 
     </Box>

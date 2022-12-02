@@ -22,10 +22,9 @@ import { Spinner } from '@chakra-ui/react';
 import {onAuthStateChanged} from 'firebase/auth';
 import { auth } from '../firebaseEnv';
 import axios from 'axios';
-import experience2various from '../experience2various';
+import {experience2various,perLevelUp} from '../experience2various';
 
 
-const perLevelup=20;
 const avatarStyle = {
 
 }
@@ -34,6 +33,7 @@ function Mypage() {
   const [userData, setUserData] = useState();
   const [totalExperience, setTotalExperience] = useState();
   const [upto, setUpto] = useState();
+  const perLevelup=perLevelUp();
   /*バーの使えそうな色
   "blackAlpha" | "gray" |"orange"|  "linkedin"  | "twitter" 
   */
@@ -72,7 +72,7 @@ function Mypage() {
         <Image src={palpal} alt='Avatar' style={{margin: '0 auto', border:'0px solid'}} boxSize={'100%'} />
       </Box>
       <Box style={{width:'75%', margin:'0 auto'}} >
-        <CircularProgress value={userData.experience_point_num} max={perLevelup} color={theme.colors.main} size={'100%'} >
+        <CircularProgress value={perLevelup-upto} max={perLevelup} color={theme.colors.main} size={'100%'} >
           <CircularProgressLabel>
             <Text style={{padding:'0.4rem'}} fontSize='2xl' >
               総経験値 : {totalExperience},<br/>
