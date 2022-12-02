@@ -70,16 +70,19 @@ const TaskList = () => {
         <GridItem colSpan={24}><Heading as='h4' size='md'>内容</Heading></GridItem>
 
       </Grid>
-      {ChallengesList.map((todo) => {
-        return (
-          <Todo 
-            key={todo.id} 
-            status={todo.status} 
-            content={todo.title} 
-            contentReason={todo.text}
-            experience={todo.experience_point} />
-        );
-      })}
+      <Box style={{paddingBottom:'70px'}}>
+        {ChallengesList.map((todo) => {
+          return (
+            <Todo 
+              key={todo.id} 
+              status={todo.status} 
+              content={todo.title} 
+              contentReason={todo.text}
+              experience={todo.experience_point} />
+          );
+        })}
+      </Box>
+      
       <Footer/>
     </Box>
   )
