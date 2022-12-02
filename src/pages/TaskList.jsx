@@ -25,15 +25,11 @@ import axios from 'axios';
 import { Spinner } from '@chakra-ui/react'
 
 
-const perLevelup=20;
 const avatarStyle = {
 
 }
 
 const TaskList = () => {
-  const name='名前';
-  const level=1;
-  const totalExperience=10;
   const todoContents = allChallenges;
   const [userData, setUserData] = useState();
   const [ChallengesList, setChallengesList] = useState();

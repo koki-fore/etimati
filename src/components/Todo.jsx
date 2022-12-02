@@ -22,8 +22,6 @@ import {
 } from 'react-icons/bi'
 
 
-
-const perLevelup=20;
 const avatarStyle = {
 
 }
