@@ -23,6 +23,7 @@ import {onAuthStateChanged} from 'firebase/auth';
 import { auth } from '../firebaseEnv';
 import axios from 'axios';
 import {experience2various,perLevelUp} from '../experience2various';
+import SelectAvatar from '../components/SelectAvator';
 
 
 const avatarStyle = {
@@ -69,7 +70,8 @@ function Mypage() {
       <Header userInfo={userData}/>
       <Text fontSize='4xl'>{userData.screen_name}</Text>
       <Box style={{height:'40vh'}}>
-        <Image src={palpal} alt='Avatar' style={{margin: '0 auto', border:'0px solid'}} boxSize={'100%'} />
+        {/*<Image src={palpal} alt='Avatar' style={{margin: '0 auto', border:'0px solid'}} boxSize={'100%'} />*/}
+        <SelectAvatar all={userData.experience_point_num} version={0} />
       </Box>
       <Box style={{width:'75%', margin:'0 auto'}} >
         <CircularProgress value={perLevelup-upto} max={perLevelup} color={theme.colors.main} size={'100%'} >
