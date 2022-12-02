@@ -1,4 +1,4 @@
-import { useAuthContext } from '../contexts/AuthContext';
+// import { useAuthContext } from '../contexts/AuthContext';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useState, useRef } from 'react';
 import { Button } from '@chakra-ui/react';
