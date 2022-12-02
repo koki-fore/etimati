@@ -22,10 +22,9 @@ import { Spinner } from '@chakra-ui/react';
 import {onAuthStateChanged} from 'firebase/auth';
 import { auth } from '../firebaseEnv';
 import axios from 'axios';
-import experience2various from '../experience2various';
+import {experience2various,perLevelUp} from '../experience2various';
 
 
-const perLevelup=20;
 const avatarStyle = {
 
 }
@@ -34,6 +33,7 @@ function Mypage() {
   const [userData, setUserData] = useState();
   const [totalExperience, setTotalExperience] = useState();
   const [upto, setUpto] = useState();
+  const perLevelup=perLevelUp();
   /*バーの使えそうな色
   "blackAlpha" | "gray" |"orange"|  "linkedin"  | "twitter" 
   */
