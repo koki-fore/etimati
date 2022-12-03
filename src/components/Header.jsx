@@ -22,6 +22,7 @@ import logo from '../assets/logo.jpg';
 import {experience2various} from '../experience2various';
 import SignOutButton from './SignOutButton';
 import palpal from '../assets/palpal_1.png'
+import SelectAvatar from './SelectAvator';
 
 
 const headerStyle = {
@@ -36,6 +37,7 @@ const Header = (props) => {
   // const experience = 10;  //仮置き
   const userName = props.userInfo.user_id;
   const {level, upto,avatar}=experience2various(props.userInfo.experience_point_num);
+  const userData = props.userInfo;
   
 
   return (
@@ -61,18 +63,20 @@ const Header = (props) => {
                   variant={'link'}
                   cursor={'pointer'}
                   minW={0}>
-                  <Avatar
+                  {/*<Avatar
                     size={'sm'}
                     src={palpal}
-                  />
+                  />*/}
+                  <SelectAvatar all={userData.experience_point_num} version={2} />
+
                 </MenuButton>
                 <MenuList alignItems={'center'}>
                   <br />
                   <Center>
-                    <Avatar
+                    {/*<Avatar
                       size={'2xl'}
-                      src={palpal}
-                    />
+                      src={palpal}/>*/}
+                    <SelectAvatar all={userData.experience_point_num} version={1}/>
                   </Center>
                   <br />
                   <Center>
