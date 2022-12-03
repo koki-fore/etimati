@@ -58,8 +58,8 @@ const PostPage = () => {
       console.log('user = '+user.uid)
       axios.get('http://localhost:8080/users/me/'+user.uid)
       .then((res) => {
-        console.log('userdata = '+JSON.stringify(res.data))
-        console.log('challenge_completed = '+JSON.stringify(res.data.challenge_completed))
+        // console.log('userdata = '+JSON.stringify(res.data))
+        // console.log('challenge_completed = '+JSON.stringify(res.data.challenge_completed))
         setUserData(res.data)
         setChallengesList(MakeListOfAccomplishments(todoContents,res.data.challenge_completed,'notAchieved'));
       })
@@ -100,7 +100,8 @@ const PostPage = () => {
         getDownloadURL(pictureRef, 'test/'+fileName)
         .then((url) => {
           console.log(url)
-
+          console.log(value)
+          console.log(userData.id)
           // ここにaxiosを書く
           axios.post('http://localhost:8080/posts',{
             user_FK:userData.id,
@@ -124,19 +125,19 @@ const PostPage = () => {
                 console.log('challlenge-comp')
                 console.log(err);
               })
-              axios.put('http://localhost:8080/users/'+userData.firebase_FK, {
-                experience_point_num: userData.experience_point_num + todoContents[value-1].experience_point
-              })
-              .then((res)=>{
-                console.log(res);
-              })
-              .catch((err)=>{
-                console.log('experience')
-                console.log(userData.experience_point_num)
-                console.log(todoContents[value-1].experience_point)
-                console.log(userData.experience_point_num + todoContents[value-1].experience_point)
-                console.log(err);
-              })
+              // axios.put('http://localhost:8080/users/'+userData.firebase_FK, {
+              //   experience_point_num: userData.experience_point_num + todoContents[value-1].experience_point
+              // })
+              // .then((res)=>{
+              //   console.log(res);
+              // })
+              // .catch((err)=>{
+              //   console.log('experience')
+              //   console.log(userData.experience_point_num)
+              //   console.log(todoContents[value-1].experience_point)
+              //   console.log(userData.experience_point_num + todoContents[value-1].experience_point)
+              //   console.log(err);
+              // })
             }
             console.log(res);
           })
@@ -180,18 +181,18 @@ const PostPage = () => {
             console.log('challlenge-comp')
             console.log(err);
           })
-          axios.put('http://localhost:8080/users/'+userData.firebase_FK, {
-            experience_point_num: userData.experience_point_num + todoContents[value-1].experience_point
-          })
-          .then((res)=>{
-            console.log(res);
-          })
-          .catch((err)=>{
-            console.log('experience')
-            console.log(userData.experience_point_num)
-            console.log(todoContents[value-1])
-            console.log(err);
-          })
+          // axios.put('http://localhost:8080/users/'+userData.firebase_FK, {
+          //   experience_point_num: userData.experience_point_num + todoContents[value-1].experience_point
+          // })
+          // .then((res)=>{
+          //   console.log(res);
+          // })
+          // .catch((err)=>{
+          //   console.log('experience')
+          //   console.log(userData.experience_point_num)
+          //   console.log(todoContents[value-1])
+          //   console.log(err);
+          // })
         }
       })
       .catch((err)=>{
@@ -235,7 +236,10 @@ const PostPage = () => {
           チャレンジ
         </Heading>
 
-          <Select value={value} onChange={(event) => setValue(event.target.value)}>
+          <Select value={value} onChange={(event) => {
+            setValue(event.target.value)
+            console.log(event.target.value)
+            }}>
             <option value={null} key={null} >なし</option>
             {ChallengesList?.map(challenge => (
               <option value={challenge.id} key={challenge.id} >{challenge.title}</option>
