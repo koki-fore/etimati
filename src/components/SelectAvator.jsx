@@ -23,25 +23,25 @@ const SelectAvatar = (props) => {
   const firstImg = 4;
   const secondImg = 7;
   if (version == forMypage){
-    if(level<=firstImg){
+    if(level<firstImg){
       return <Image src={palpal1} alt='Avatar' boxSize={'100%'}></Image>
-    }else if(level<=secondImg){
+    }else if(level<secondImg){
       return <Image src={palpal2} alt='Avatar' boxSize={'100%'}></Image>
     }else {
       return <Image src={palpal3} alt='Avatar' boxSize={'100%'}></Image>
     }
   }else if(version == forHeaderMenu){
-    if(level<=firstImg){
+    if(level<firstImg){
       return <Avatar src={palpal1} alt='Avatar' size={'2xl'}></Avatar>
-    }else if(level<=secondImg){
+    }else if(level<secondImg){
       return <Avatar src={palpal2} alt='Avatar' size={'2xl'}></Avatar>
     }else {
       return <Avatar src={palpal3} alt='Avatar' size={'2xl'}></Avatar>
     }
   }else if(version == forHeaderIcon){
-    if(level<=firstImg){
+    if(level<firstImg){
       return <Avatar src={palpal1_tp} alt='Avatar' size={'sm'}></Avatar>
-    }else if(level<=secondImg){
+    }else if(level<secondImg){
       return <Avatar src={palpal2_tp} alt='Avatar' size={'sm'}></Avatar>
     }else {
       return <Avatar src={palpal3_tp} alt='Avatar' size={'sm'}></Avatar>
